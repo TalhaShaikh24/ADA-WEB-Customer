@@ -1,0 +1,198 @@
+﻿{
+  "head": {
+    "title": " ADA - الطيران,"
+  },
+
+  ".navLang": {
+    "Home": "الصفحة الرئيسية",
+    "About": "عن",
+    "Profile": "الملف الشخصي",
+    "ContactUs": "اتصل بنا",
+    "Login": "تسجيل دخول",
+    "Logout": "تسجيل الخروج"
+  },
+
+  ".Homelang": {
+    "Welcome": " مرحبا بك",
+    "ADA": "طيران ابوظبي",
+    "Largest": "أكبر مشغل طائرات هليكوبتر في الشرق الأوسط",
+    "searchflight": "البحث عن رحله"
+
+
+  },
+  "#hero .container #bannerTabs": {
+
+    "searchflight": "البحث عن رحله"
+
+  },
+
+  ".FlightSearchLang": {
+    "flight": "الرحلة",
+    "Booking": "الحجز",
+    "OneWay": "اتجاه واحد ",
+    "Return": "ذهاب وعودة",
+    "FlyingFrom": "تحلق من",
+    "FlyingTo": "تحلق إلى",
+    "FromDate": "من تاريخ",
+    "ToDate": "إلى تاريخ",
+    "SelectDestination": "حدد وجهتك",
+    "SearchNow": "ابحث الآن",
+    "LeavingFrom": "يغادر من",
+    "GoingFrom": "الذهاب من",
+    "DepartingOn": "المغادرة",
+    "ArrivingOn": "وصوله",
+    "Adults": "الكبار",
+    "Infants": "الرضع"
+
+  },
+  ".ServiceSearchLang": {
+    "Services": "الخدمات",
+    "OurServices": "خدماتنا",
+    "Managebooking": "إدارة الحجز",
+    "Check-in": "اتمام إجراءات السفر إلكترونيا",
+    "FlightStatus": "حالة الطيران",
+    "Baggage": "الأمتعة",
+    "Cargo": "الشحن"
+  },
+
+  ".LoginLang": {
+    "Username": "اسم المستخدم",
+    "Password": "كلمة المرور",
+    "Rememberme": "تذكر المستخدم؟",
+    "Login": "تسجيل الدخول'",
+    "Signupas": "التسجيل",
+    "Individual": "الفرد",
+    "Family": "الأسرة",
+    "Corporator": "الشركات",
+    "ForgotPassword": "هل نسيت كلمة السر؟"
+  },
+
+  ".RegisterLang , .MyProfileLang ": {
+    "Registeranewuser": "سجل مستخدم جديد",
+    "Title": "اللقب",
+    "Mr": "السيد",
+    "Ms": "آنسة",
+    "Mrs": "السيدة",
+    "Name": "الاسم",
+    "Email": "البريد الإلكتروني",
+    "SelectDocumentType": "اختر نوع المستند",
+    "SelectNationality": "اختر الجنسية",
+    "SelectTitle": " اختر اللقب",
+    "Username": "اسم المستخدم",
+    "Password": "كلمة المرور",
+    "Birthdate": "تاريخ الميلاد ",
+    "Nationality": "الجنسية",
+    "Mobile": "الهاتف المحمول",
+    "Passport": "رقم الهوية",
+    "UAEID": "الهوية الإماراتية",
+    "TravelID": "هوية السفر",
+    "SecurityID": "هوية الأمن",
+    "CompanyID": "هوية الشركة",
+    "BirthCertificate": "شهادة الميلاد",
+    "DocumentType": "نوع الوثيقة",
+    "Documents": "الوثائق",
+    "DocumentTypee": "نوع الوثيقة",
+    "UploadUAEID": "تحميل الإمارات الهوية",
+    "UploadPassport": "تحميل جواز السفر",
+    "UploadTravelID": "تحميل هوية السفر",
+    "UploadSecurityID": "تحميل هوية الأمن ",
+    "UploadCompanyID": "تحميل هوية الشركة",
+    "UploadBirthCertificate": "تحميل شهادة الميلاد",
+    "AreYouDelmaResident": "هل أنت مقيم في دلما ؟",
+    "AreYouUAEResident": "هل أنت مقيم في الإمارات العربية المتحدة؟",
+    "AreYouGovermentResident": "هل أنت جهة حكومية؟",
+    "AreYouGovermentEntity": "هل أنت جهة حكومية؟",
+    "Register": "تسجيل",
+    "RegisterGroup": "تسجيل المجموعة",
+    "CorporateRegistration": "تسجيل الشركات",
+    "WelcometoAbuDhabiAviation": "مرحبا بكم في طيران أبو ظبي",
+    "GroupLoginInformation": "معلومات تسجيل الدخول للمجموعات",
+    "OtherMembersinformation": "معلومات الأعضاء الآخرين",
+    "Add": "أضف",
+    "Remove": "احذف",
+    "CorporateLoginInformation": "معلومات تسجيل دخول الشركات",
+    "UpdateInformation": "تحديث المعلومات",
+    "MyProfile": "ملفي الشخصي",
+    "Actions": "حالة",
+    "Role": "المهام",
+    "Status": "المهام",
+    "ManageMembers": "إدارة الأعضاء",
+    "EditMembers": "تغيير الأعضاء",
+    "Save": "احفظ",
+    "Cancel": "إلغاء",
+    "AreYouGroupHead": "هل أنت رئيس المجموعة؟",
+    "AddNewMember": "إضافة جديد عضو",
+    "SeeYourDocuments": "الإطلاع على الوثائق",
+    "UpdateCorporateInformation": "تحديث معلومات الشركة",
+    "UpdateGroupInformation": "تحديث معلومات المجموعة",
+    "YourDocuments": "الإطلاع على الوثائق",
+    "close": "إغلاق",
+    "Update": "تحديث",
+    "Submit": "إرسال",
+    "optional": "خياري"
+
+  },
+
+  ".FlightResultLang": {
+    "FlightResults": "نتائج الطيران",
+    "Book": "حجز"
+  },
+
+  ".FlightMembers": {
+    "FlightMembers": "أعضاء الرحلة",
+    "Name": "الاسم",
+    "Age": "العمر",
+    "Gender": "الجنس",
+    "Email": "البريد الإلكتروني",
+    "Remove": "احذف",
+    "Continue": "يكمل"
+  },
+  ".FlightBookingLang": {
+    "Booking": "الحجز",
+    "FlightBooking": "حجز الرحلة",
+    "ConfirmReservation": "تأكيد الحجز",
+    "prev": "التالي",
+    "next": "السابق"
+  },
+
+
+  ".BookingHistory": {
+    "bookinghistory": "تاريخ الحجز",
+    "MyBookings": "حجوزي",
+    "CanceledBookings": "إلغاء الحجوزات",
+    "WelcometoMyBookings": "مرحبا بكم في حجوزاتي"
+  },
+  ".FlightStatus, .CargoStatus": {
+    "FlightStatus": "حالة الرحلة",
+    "FlightStatusSearch": "البحث عن حالة الرحلة",
+    "CargoStatusSearch": "البحث عن حالة الرحلة",
+    "EnterFlightNumber": "أدخل رقم الرحلة",
+    "CargoStatus": "حالة الشحن  ",
+    "Barcode/ShipperReferenceNumber": "الباركود / الشاحن رقم المرجع"
+  },
+  ".Checkin": {
+    "CheckinDetails": "معلومات تسجيل الدخول",
+    "SelectMembers": "اختر الأعضاء",
+    "Name": "الاسم",
+    "Nationality": "الجنسية",
+    "Birthdate": "تاريخ الميلاد ",
+    "Destination": "الوجهة",
+    "SeatNumber": "رقم المقعد",
+    "ReservationStatus": "حالة الحجز",
+    "SaveCheckin": "حفظ التسجيل",
+    "Confirm": "يتأكد"
+  },
+  ".Boarding": {
+    "BoardingPass": "بطاقة الصعود"
+
+  }
+
+  
+
+
+
+
+
+
+
+}

@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "About";
+    @using Microsoft.Extensions.Configuration
+    @inject IConfiguration Configuration
+}
+<style>
+    /*@@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);*/
+
+    @@font-face {
+        font-family: 'test';
+        src: url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+        font-style: normal;
+        unicode-range: U+30-39;
+    }
+    p {
+        font-family: 'test','Times New Roman'!important;
+    }
+    .aboutSubHeader {
+        background-image:url(/assets/images/AAA2816.jpg);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        min-height: 400px
+    }
+    h3.text-custom-black{
+        text-transform:capitalize!important;
+    }
+</style>
+<div id="aboutSubHeader" class="aboutSubHeader normal-bg section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12  navLang">
+                <h1 key="About" class="text-custom-white">About</h1>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Register/jquery/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous"></script>
+<script src="~/Register/js/About.js"></script>
+<script src="~/Register/js/Languages.js"></script>
+
+
+

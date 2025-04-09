@@ -1,0 +1,483 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+        .cardd {
+            border-radius: 4px;
+            background: #fff;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+            transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+            padding: 18px 30px 18px 30px;
+            cursor: pointer;
+        }
+
+            .cardd:hover {
+                transform: scale(1.05);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+            }
+
+        .cardd-1 {
+            background-repeat: no-repeat;
+            background-position: right;
+            background-size: 80px;
+        }
+
+        @@media(max-width: 990px) {
+            .cardd {
+                margin: 20px;
+            }
+        }
+
+        /*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+#hero {
+  width: 100%;
+  height: 75vh;
+  background: url("/ADAWEbAPP/assets/images/Logo-2 (1).jpg") top left;
+  background-size: contain;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#hero:before {
+  content: "";
+  background: rgba(255, 255, 255, 0.6);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#hero .container {
+  position: relative;
+  padding-top: 132px;
+  padding-bottom: 30px;
+}
+
+@@media (max-width: 992px) {
+  #hero .container {
+    padding-top: 58px;
+  }
+}
+
+#hero h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #222222;
+  font-family: "Poppins", sans-serif;
+}
+
+#hero h1 span {
+  color: #d33333;
+}
+
+#hero h2 {
+  color: #555555;
+  margin: 5px 0 30px 0;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+#hero .btn-get-started {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 28px;
+  border-radius: 4px;
+  transition: 0.5s;
+  color: #fff;
+  background: #d33333;
+}
+
+#hero .btn-get-started:hover {
+  background: #d33333;
+}
+
+#hero .btn-watch-video {
+  font-size: 16px;
+  display: inline-block;
+  padding: 10px 25px 8px 40px;
+  transition: 0.5s;
+  margin-left: 25px;
+  color: #222222;
+  position: relative;
+  font-weight: 600;
+}
+
+#hero .btn-watch-video i {
+  color: #d33333;
+  font-size: 32px;
+  position: absolute;
+  left: 0;
+  top: 7px;
+  transition: 0.3s;
+}
+
+#hero .btn-watch-video:hover {
+  color: #d33333;
+}
+
+#hero .btn-watch-video:hover i {
+  color: #d33333;
+}
+
+@@media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+}
+
+@@media (max-width: 768px) {
+  #hero {
+    height: auto;
+  }
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+  #hero .btn-get-started, #hero .btn-watch-video {
+    font-size: 13px;
+  }
+}
+
+
+
+
+
+</style>
+
+
+    <section id="hero" class="d-flex align-items-center" style="padding:20px 0px">
+        <div class="container aos-init aos-animate" data-aos="zoom-out" data-aos-delay="100">
+            <h1>
+                Welcome to <span>ADA</span>
+            </h1>
+            <h2>
+                The Largest HelicopterOperator in the Middle East
+            </h2>
+            <div class="d-flex" id="bannerTabs">
+                <a href="#bannerTabs" class="btn-first btn-small" id="clickme">Search Flight</a>
+
+            </div>
+        </div>
+    </section>
+    
+
+   
+      
+
+    <section class="section-padding bg-light-white">
+
+
+        <div class="banner-tabs" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title mt-2">
+                            <h2>Flights</h2>
+                            <h3><span>Flights</span> Booking</h3>
+                        </div>
+                        <div class="tabs">
+                            <ul class="custom-flex nav nav-tabs">
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#OneWay">OneWay</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Return">Return</a></li>
+
+                            </ul>
+                            <div class="tab-content bg-custom-white bx-wrapper padding-20">
+                                <div class="tab-pane active" id="OneWay">
+                                    <div class="tab-inner">
+                                        <form id="fromOneWay">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="fs-14 text-custom-black fw-500">Flying From</label>
+                                                        <input disabled type="text" name="#" class="form-control form-control-custom" placeholder="Abu Dhabi" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6">
+                                                    <div class="group-form">
+                                                        <label class="fs-14 text-custom-black fw-500">Flying To</label>
+                                                        <select name="toOneWay"
+                                                                id="toOneWay"
+                                                                data-live-search="true"
+                                                                class="selectpicker form-control "
+                                                                data-size="5"
+                                                                data-show-subtext="true"
+                                                                multiple
+                                                                data-max-options="1"
+                                                                title="Select Destination">
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4 col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label class="fs-14 text-custom-black fw-500">From Date</label>
+                                                                <div class="input-group group-form">
+                                                                    <input type="text" name="fromOneWayDate"  readonly="readonly" id="fromOneWayDate" class="form-control form-control-custom datepickr" placeholder="mm/dd/yy" readonly />
+                                                                    <span class="input-group-append">
+                                                                        <i class="far fa-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label class="fs-14 text-custom-black fw-500">To Date</label>
+                                                                <div class="input-group group-form">
+                                                                    <input type="text" name="toOneWayDate"  readonly="readonly" id="toOneWayDate" class="form-control form-control-custom datepickr" placeholder="mm/dd/yy" readonly />
+                                                                    <span class="input-group-append">
+                                                                        <i class="far fa-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-6">
+                                                    <label class="submit"></label>
+                                                    <button type="button" id="searchFlight" class="btn-first btn-submit full-width btn-height">Search Now</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="Return">
+                                    <div class="tab-inner">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="fs-14 text-custom-black fw-500">Leaving From</label>
+                                                        <input type="text" name="#" class="form-control form-control-custom" placeholder="city, distirct or specific airpot" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="fs-14 text-custom-black fw-500">Going From</label>
+                                                        <input type="text" name="#" class="form-control form-control-custom" placeholder="city, distirct or specific airpot" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label class="fs-14 text-custom-black fw-500">Departing On</label>
+                                                                <div class="input-group group-form">
+                                                                    <input type="text" name="#" class="form-control form-control-custom datepickr" placeholder="mm/dd/yy" readonly />
+                                                                    <span class="input-group-append">
+                                                                        <i class="far fa-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label class="submit"></label>
+                                                                <div class="group-form">
+                                                                    <select class="custom-select form-control form-control-custom">
+                                                                        <option>Anytime</option>
+                                                                        <option>Morning</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label class="fs-14 text-custom-black fw-500">Arriving On</label>
+                                                                <div class="input-group group-form">
+                                                                    <input type="text" name="#" class="form-control form-control-custom datepickr" placeholder="mm/dd/yy" readonly />
+                                                                    <span class="input-group-append">
+                                                                        <i class="far fa-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label class="submit"></label>
+                                                                <div class="group-form">
+                                                                    <select class="custom-select form-control form-control-custom">
+                                                                        <option>Anytime</option>
+                                                                        <option>Morning</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <div class="form-group">
+                                                                <label class="fs-14 text-custom-black fw-500">Adults</label>
+                                                                <div class="group-form">
+                                                                    <select class="custom-select form-control form-control-custom">
+                                                                        <option>01</option>
+                                                                        <option>02</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="form-group">
+                                                                <label class="fs-14 text-custom-black fw-500">Kids</label>
+                                                                <div class="group-form">
+                                                                    <select class="custom-select form-control form-control-custom">
+                                                                        <option>01</option>
+                                                                        <option>02</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label class="fs-14 text-custom-black fw-500">Infants</label>
+                                                                <div class="group-form">
+                                                                    <select class="custom-select form-control form-control-custom">
+                                                                        <option>01</option>
+                                                                        <option>02</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label class="submit"></label>
+                                                                <button class="btn-first btn-submit full-width btn-height">Search</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+<section class="section-padding our-work-sec">
+    <div class="container">
+        <div class=" mt-2 section-title">
+            <h2>Services</h2>
+            <h3><span>Our</span> Services</h3>
+        </div>
+        <div class="row">
+
+
+
+            <div class="col-sm-1-5">
+                <div class="cardd card-1">
+
+                    <button type="button" class="btn btn-default">
+                        <center><img src="~/ADAWEbAPP/assets/images/MANAGE MY BOOKING.svg" style="height: 60px;" alt=""> </center>
+
+
+                        <div class="btn-top-label">Manage booking</div>
+                    </button>
+
+                </div>
+            </div>
+            <div class="col-sm-1-5">
+                <div class="cardd card-1">
+
+                    <button type="button" class="btn btn-default">
+                        <center><img src="~/ADAWEbAPP/assets/images/check-in.svg" style="height: 60px;" alt=""> </center>
+
+
+                        <div class="btn-top-label">Manage booking</div>
+                    </button>
+
+                </div>
+            </div>
+            <div class="col-sm-1-5">
+                <div class="cardd card-1">
+
+                    <button type="button" class="btn btn-default">
+                        <center><img src="~/ADAWEbAPP/assets/images/flight status.svg" style="height: 60px;" alt=""> </center>
+
+
+                        <div class="btn-top-label">Manage booking</div>
+                    </button>
+
+                </div>
+            </div>
+            <div class="col-sm-1-5">
+                <div class="cardd card-1">
+
+                    <button type="button" class="btn btn-default">
+                        <center><img src="~/ADAWEbAPP/assets/images/baggage.svg" style="height: 60px;" alt=""> </center>
+
+
+                        <div class="btn-top-label">Manage booking</div>
+                    </button>
+
+                </div>
+            </div>
+            <div class="col-sm-1-5">
+                <div class="cardd card-1">
+
+                    <button type="button" class="btn btn-default">
+                        <center><img src="~/ADAWEbAPP/assets/images/upgrade.svg" style="height: 60px;" alt=""> </center>
+
+
+                        <div class="btn-top-label">Manage booking</div>
+                    </button>
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</section>
+
+
+
+
+<script type="text/x-handlebars" id="temp_Destination">
+    {{#each this}}
+    <option value="{{destID}}">{{destName}}</option>
+    {{/each}}
+
+</script>
+
+
+@section scripts {
+    <script src="@Url.Content("~/Register/js/Home.js")"></script>
+    <script src="~/Register/js/AdditionMethod.js"></script>
+}
+
+
+

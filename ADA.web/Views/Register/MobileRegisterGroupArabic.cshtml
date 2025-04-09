@@ -1,0 +1,391 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@{ Layout = null; }
+
+
+<html lang="ar">
+
+<head>
+    <title>Group Registration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="keywords" content="#">
+    <meta name="description" content="#">
+    <title>Individual Registration</title>
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/datepicker.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/responsive.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.jqueryscript.net/demo/Bootstrap-4-Dropdown-Select-Plugin-jQuery/dist/css/bootstrap-select.css" />
+
+</head>
+
+<body>
+
+    <style>
+        body{
+
+            overflow-x:hidden;
+            box-sizing:border-box;
+
+        }
+        /*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    overflow: hidden;
+    background: #fff;
+}
+
+    #preloader:before {
+        content: "";
+        position: fixed;
+        top: calc(50% - 30px);
+        left: calc(50% - 30px);
+        border: 6px solid #d51c29;
+        border-top-color: #e2eefd;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        -webkit-animation: animate-preloader 1s linear infinite;
+        animation: animate-preloader 1s linear infinite;
+    }
+
+@@-webkit-keyframes animate-preloader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@@keyframes animate-preloader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+        a, button {
+            cursor: pointer !important
+        }
+
+        .validation-error-message {
+            color: red;
+            font-size: 10px;
+            display: block;
+            width: 100%;
+            height: 0px
+        }
+
+        .extensionDoc {
+            color: grey;
+            font-size: 11px;
+        }
+
+        .required {
+            color: red
+        }
+
+        .DocFile {
+            padding-bottom: 30px;
+        }
+
+        .form-control,.dropdown-toggle {
+            background: #f5f5f5 !important;
+
+        }
+        .filter-option {
+            text-align: right !important;
+        }
+
+        .dropdown-toggle::after {
+            margin-right: -12px !important;
+        }
+
+        .dropdown-menu .inner {
+            text-align: right !important;
+        }
+
+        .bootstrap-select.btn-group.show-tick .dropdown-menu a.selected span.dropdown-item-inner span.check-mark {
+            right: auto !important;
+            left: 15px !important;
+        }
+    </style>
+
+    <div id="preloader"></div>
+
+    <div class="container-fluid"  style=" direction: rtl;text-align:right">
+
+
+
+        <form id="RegistrationGroupForms" role="form" action="">
+
+            <div class="card card-primary mt-3" style="margin-bottom: 25px;">
+                <div class="card-header" style="background: #372e2c !important; padding: 0px; text-align: center; display: flex; justify-content: center; align-items: center;">
+                    <h3 class="text-custom-white" style="font-size: 25px; color: #ffff; margin-top:12px">
+                        <b style="color: #ffff !important; font-size:16px;">معلومات تسجيل الدخول للمجموعة</b>
+                    </h3>
+
+                </div>
+
+
+                <div class="card-body">
+
+                    <div class="row mb-3">
+     
+                        <div class="col-md-3 form-group">
+                            <label class="requiredStar fs-14 text-custom-black fw-500">اسم المستخدم <span class="required">*</span> </label>
+                            <input maxlength="50" autocomplete="off" class="form-control" type="text" name="PUsername" id="PUsername">
+                        </div>
+
+                        <div class="col-md-3 form-group">
+                            <label class="requiredStar fs-14 text-custom-black fw-500">كلمة المرور <span class="required">*</span> </label>
+                            <input maxlength="20" autocomplete="off" class="form-control" type="password" name="PPassword" id="PPassword">
+                        </div>
+
+                        <div class="col-md-6 d-flex">
+                            <div class="form-check">
+
+                                <label class="custom-checkbox" for="ActiveDelmaIsland">
+                                    <input class="form-check-input ActiveDelmaIsland" type="checkbox" value="" id="ActiveDelmaIsland" name="ActiveDelmaIsland">
+                                    <span class="checkmark"></span>
+                                    <span class="mr-3">هل أنت مقيم في دلما؟</span>
+                                </label>
+
+                            </div>
+
+                            <div class="form-check d-none">
+                                <input class="form-check-input" type="checkbox" value="" id="ActiveUAEID">
+                                <label class="form-check-label" for="ActiveUAEID">
+                                    هل أنت مقيم في الإمارات؟
+                                </label>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+
+            <div class="card card-primary mb-5">
+                <div class="card-header" style="background: #372e2c !important;padding: 0px; text-align: center; display: flex; justify-content: center; align-items: center;">
+                    <h3 class="  card-title text-custom-white" style="font-size:25px;color:#ffff; margin-top:12px">
+                        <b style="font-size: 16px;">معلومات الأعضاء الأخرى</b>
+                    </h3>
+                </div>
+                <div class="card-body">
+
+
+                    <div id="dynamic-field-1" class="form-group dynamic-field">
+                        <div class="row">
+                            <div class="col-md-3">
+
+                                <div class="form-group">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">عنوان <span class="required">*</span> </label>
+                                    <div class="group-form inputFields">
+                                        <select class="form-control selectpicker OtherMembersGender" id="OtherMembersGender" name="OtherMembersGender" dir="rtl">
+                                            <option value="Mr" name="Mr">السيد</option>
+                                            <option value="Mrs" name="Mrs">السّيدة</option>
+                                            <option value="MS" name="Ms">آنسة</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 form-group">
+                                <label class="requiredStar fs-14 text-custom-black fw-500">اسم <span class="required">*</span> </label>
+                                <input maxlength="50" autocomplete="off"  class="form-control OtherMembersName" type="text" name="OtherMembersName" id="OtherMembersName" placeholder="اسم">
+                            </div>
+
+                            <div class="col-md-3 form-group">
+                                <label class="requiredStar fs-14 text-custom-black fw-500">البريد الإلكتروني <span class="text-secondary">(خياري)</span> </label>
+                                <input maxlength="60" autocomplete="off"  class="form-control OtherMembersEmail" type="email" name="OtherMembersEmail" id="OtherMembersEmail" placeholder="البريد الإلكتروني">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="requiredStar fs-14 text-custom-black fw-500">جنسية</label><span class="required"> *</span>
+                                <select  id="OtherMembersNationality" name="OtherMembersNationality" class="form-control selectpicker OtherMembersNationality" title="اختر الجنسية" data-live-search="true" data-size="5" data-show-subtext="true" multiple data-max-options="1">
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-3 form-group">
+                                <label class="requiredStar fs-14 text-custom-black fw-500">تاريخ الميلاد <span class="required">*</span> </label>
+                                <div class="input-group group-form" style="position:relative">
+                                    <input style="z-index:auto" autocomplete="off" type="text"  readonly="readonly" name="OtherMembersNationalityBirthdate" id="OtherMembersNationalityBirthdate" class="form-control OtherMembersNationalityBirthdate" placeholder="دد-ممم-سسس" />
+                                    <span class="input-group-append">
+                                        <i class="far fa-calendar" style="position: absolute; left: 10px; top: 12px;"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 form-group">
+                                <div class="form-group">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">التليفون المحمول <span class="required">*</span> </label>
+                                    <div class="input-group group-form" style="position:relative">
+                                        <input autocomplete="off" style="padding-left: 64px; padding-right: 65px; z-index: auto;" class="form-control OtherMembersNationalityMobile" maxlength="9" type="tel" onkeypress="return isNumberKey(event)" name="OtherMembersNationalityMobile" id="OtherMembersNationalityMobile" placeholder="XXXXXXXXX">
+                                        <span class="input-group-mask" style="position: absolute; top: 6px; right: 6px;">(+971) -</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class=" col-md-3 form-group">
+                                <label class="requiredStar fs-14 text-custom-black fw-500">رقم الهوية<span class="required">*</span> </label>
+                                <input autocomplete="off" class="form-control OtherMembersNationalityDocuments" maxlength="18" type="text" name="OtherMembersNationalityDocument" id="OtherMembersNationalityDocument" placeholder="رقم الهوية">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="requiredStar fs-14 text-custom-black fw-500">نوع الوثيقة <span class="required">*</span> </label>
+                                <select  id="OtherMembersNationalityDocumentType" class="form-control selectpicker OtherMembersNationalityDocumentType" title="حدد أنواع المستندات" name="OtherMembersNationalityDocumentType" data-show-subtext="true" multiple data-live-search="true">
+                                    <option value="U">الهوية الإماراتية</option>
+                                    <option value="P">جواز سفر</option>
+                                    <option value="T">معرف السفر</option>
+                                    <option value="S">معرف الأمان</option>
+                                    <option value="C">هوية الشركة</option>
+                                    <option value="B">شهادة الميلاد</option>
+
+                                </select>
+                            </div>
+
+                          
+                        </div>
+
+                        <div class="row pt-4">
+
+                            <div class="col-md-4" id="FlieUAE" style="display:none;">
+                                <div class="form-group">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">تحميل الهوية الإماراتية</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                    <input id="InputfileUAE0" style=" padding-top: 5px!important;" type="file" class="form-control DocFile" name="UDoc" />
+                                </div>
+                            </div>
+                            <div class="col-md-4" id="FliePasport" style="display:none;">
+                                <div class="form-group">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">تحميل جواز السفر</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                    <input id="InputfilePassport0" style=" padding-top: 5px!important;" type="file" class="form-control DocFile" name="PDoc" />
+                                </div>
+                            </div>
+                            <div class="col-md-4" id="FlieTravelID" style="display:none;">
+                                <div class="form-group">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">تحميل معرف السفر</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                    <input id="InputfileTravel0" style=" padding-top: 5px!important;" type="file" class="form-control DocFile" name="TDoc" />
+                                </div>
+                            </div>
+                            <div class="col-md-4" id="FlieSecurityID" style="display:none;">
+                                <div class="form-group">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">تحميل معرف الأمان</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                    <input id="InputfileSecurity0" style=" padding-top: 5px!important;" type="file" class="form-control DocFile" name="SDoc" />
+                                </div>
+                            </div>
+                            <div class="col-md-4" id="FlieCompanyID" style="display:none;">
+                                <div class="form-group">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">تحميل معرف الشركة</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                    <input id="InputfileCompany0" style=" padding-top: 5px!important;" type="file" class="form-control  DocFile" name="CDoc" />
+                                </div>
+                            </div>
+                            <div class="col-md-4" id="FlieBirthCertificate" style="display:none;">
+                                <div class="form-group">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">تحميل شهادة الميلاد</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                    <input id="InputfileBirthdate0" style=" padding-top: 5px!important;" type="file" class="form-control  DocFile" name="BCDoc" />
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <label class="custom-checkbox">
+                                        <input class="form-check-input RGActiveDelmaIsland" type="checkbox" value="" name="RGActiveDelmaIsland">
+                                        <span class="checkmark"></span>
+                                        <span class=" mb-0 mx-4">هل أنت مقيم في دلما؟</span>
+                                    </label>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <label class="custom-checkbox">
+                                        <input class="form-check-input IsHead" type="checkbox" value="1" name="IsHead" checked disabled>
+                                        <span class="checkmark" style=" cursor: not-allowed;"></span>
+                                        <span class=" mb-0 mx-4">هل أنت رئيس المجموعة؟</span>
+                                    </label>
+
+                                </div>
+
+                            </div>
+                        </div>   
+                    
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer bg-white d-flex">
+                    <button class="btn btn-info btn-xs mr-2 GroupMembersRegistration" id="GroupMembersRegistration" type="button">يسجل</button>
+                    <button type="button" id="add-button" class="btn btn-info mr-2 ml-2  btn-xs"> يضيف</button>
+                    <button type="button" id="remove-button" class="btn btn-danger btn-xs "> إزالة</button>
+                </div>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+
+    <script type="text/x-handlebars" id="temp_Nationality">
+        {{#each this}}
+        <option value="{{countryAbbrev}}">{{countryNameAR}}</option>
+        {{/each}}
+
+    </script>
+
+    <script>
+     function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
+
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/Register/js/AdditionMethod.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/popper.min.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/bootstrap.min.js"></script>
+    <script src="https://www.jqueryscript.net/demo/Bootstrap-4-Dropdown-Select-Plugin-jQuery/dist/js/bootstrap-select.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/slick.min.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/datepicker.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/datepicker.en.js"></script>
+    <script src="@Url.Content("~/Register/js/MobileRegisterGroupArabic.js")"></script>
+
+</body>
+</html>

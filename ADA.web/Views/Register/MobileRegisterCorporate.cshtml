@@ -1,0 +1,374 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@{ Layout = null; }
+
+
+<html lang="en">
+
+<head>
+    <title>Corporate Registration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="keywords" content="#">
+    <meta name="description" content="#">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/datepicker.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.jqueryscript.net/demo/Bootstrap-4-Dropdown-Select-Plugin-jQuery/dist/css/bootstrap-select.css" />
+
+</head>
+
+<body>
+
+
+    <style>
+        body {
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+        /*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 9999;
+            overflow: hidden;
+            background: #fff;
+        }
+
+            #preloader:before {
+                content: "";
+                position: fixed;
+                top: calc(50% - 30px);
+                left: calc(50% - 30px);
+                border: 6px solid #d51c29;
+                border-top-color: #e2eefd;
+                border-radius: 50%;
+                width: 60px;
+                height: 60px;
+                -webkit-animation: animate-preloader 1s linear infinite;
+                animation: animate-preloader 1s linear infinite;
+            }
+
+        @@-webkit-keyframes animate-preloader {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @@keyframes animate-preloader {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        a, button {
+            cursor: pointer !important
+        }
+
+        .validation-error-message {
+            color: red;
+            font-size: 10px;
+            display: block;
+            width: 100%;
+            height: 0px
+        }
+
+        .extensionDoc {
+            color: grey;
+            font-size: 11px;
+        }
+
+        .required {
+            color: red
+        }
+
+        .DocFile {
+            padding-bottom: 30px;
+        }
+
+        .form-control, .dropdown-toggle {
+            background: #f5f5f5 !important;
+        }
+    </style>
+
+    <div id="preloader"></div>
+
+    <div class="container-fluid">
+
+        <form id="RegistrationGroupForms" role="form" action="">
+
+
+            <div class="card card-primary mt-3 " style="margin-bottom:25px;">
+                <div class="card-header " style="background: #372e2c !important; padding: 0px; justify-content: center; display: flex; align-items: center;">
+                    <h3 class="card-title " style="font-size: 25px; color: #ffff; margin-top: 12px">
+                        <b style="font-size:16px;">Corporate Login Information</b>
+                    </h3>
+                </div>
+
+
+
+                <div class="card-body">
+
+                    <div class="row mb-3">
+
+                        <div class="col-md-3 form-group ">
+                            <label class="requiredStar fs-14 text-custom-black fw-900">Username <span class="required">*</span> </label>
+                            <input maxlength="50" autocomplete="off" class="form-control form-control-custom" type="text" name="PUsername" id="PUsername">
+                        </div>
+
+                        <div class="col-md-3 form-group ">
+                            <label class="requiredStar fs-14 text-custom-black fw-900">Password <span class="required">*</span> </label>
+                            <input maxlength="20" autocomplete="off" class="form-control form-control-custom" type="password" name="PPassword" id="PPassword">
+                        </div>
+                    
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <div class="form-check">
+                                <div class="form-group">
+                                    <label class="custom-checkbox " for="ActiveDelmaIsland">
+                                        <input class="form-check-input ActiveDelmaIsland" type="checkbox" value="" id="ActiveDelmaIsland" name="ActiveDelmaIsland">
+                                        <span class="checkmark"></span>
+                                        <span class=" mb-0">Are You Delma Resident?</span>
+                                    </label>
+                                </div>
+                            </div>
+                      </div>
+                            <div class="col-md-3">
+                                <div class="form-check">
+                                    <div class="form-group">
+                                        <label class="custom-checkbox " for="GovEntity">
+                                            <input class="form-check-input GovEntity" type="checkbox" value="" id="GovEntity" name="GovEntity">
+                                            <span class="checkmark"></span>
+                                            <span class=" mb-0">Are You Goverment Entity?</span>
+                                        </label>
+
+                                    </div>
+                                    </div>
+                              
+                            </div>
+                        </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+
+            <div class="card card-primary mb-5 ">
+                <div class="card-header" style="background: #372e2c !important; padding: 0px; justify-content: center; display: flex; align-items: center;">
+                    <h3 class="card-title text-custom-white" style="font-size:25px;color:#ffff; margin-top:12px">
+                        <b style="font-size:16px;">Other Members Information</b>
+                    </h3>
+                </div>
+                <div class="card-body">
+
+
+                    <div id="dynamic-field-1" class="form-group dynamic-field">
+                        <div class="row">
+                            <div class="col-md-3 ">
+                                <div class="form-group ">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">Title</label><span class="required"> *</span>
+                                    <select id="OtherMembersGender" class="form-control selectpicker OtherMembersGender" name="OtherMembersGender" title="Select Title">
+
+                                        <option value="Mr" name="Mr">Mr</option>
+                                        <option value="Mrs" name="Mrs">Mrs</option>
+                                        <option value="MS" name="Ms">Ms</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 form-group ">
+                                <label class="requiredStar fs-14 text-custom-black fw-500">Name <span class="required">*</span> </label>
+                                <input maxlength="50" autocomplete="off" class="form-control form-control-custom OtherMembersName" type="text" name="OtherMembersName" id="OtherMembersName" placeholder="Name">
+                            </div>
+
+                            <div class="col-md-3 form-group ">
+                                <label class="requiredStar fs-14 text-custom-black fw-500">Email <span class="text-secondary">(Optional)</span> </label>
+                                <input maxlength="60" autocomplete="off" class="form-control form-control-custom OtherMembersEmail" type="email" name="OtherMembersEmail" id="OtherMembersEmail" placeholder="Email">
+                            </div>
+
+                            <div class="col-md-3 ">
+                                <label class="requiredStar fs-14 text-custom-black fw-500">Nationality</label><span class="required"> *</span>
+                                <select id="OtherMembersNationality" name="OtherMembersNationality" class="form-control selectpicker OtherMembersNationality" data-live-search="true" data-size="5" data-show-subtext="true" multiple data-max-options="1" title="Select Nationality">
+                                </select>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-3 form-group ">
+                                <label class="requiredStar fs-14 text-custom-black fw-500">Birthdate <span class="required">*</span> </label>
+                                <div class="input-group group-form" style="position:relative">
+                                    <input style="z-index: auto;" autocomplete="off" type="text"  readonly="readonly" name="OtherMembersNationalityBirthdate" id="OtherMembersNationalityBirthdate" class="form-control form-control-custom OtherMembersNationalityBirthdate " placeholder="dd-mmm-yyyy" />
+                                    <span class="input-group-append">
+                                        <i class="far fa-calendar" style="position: absolute; right: 10px; top: 12px;"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 form-group ">
+                                <div class="form-group ">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">Mobile <span class="required">*</span> </label>
+                                    <div class="input-group group-form" style="position:relative">
+                                        <input autocomplete="off" style="z-index:auto;padding-left:64px;padding-right:64px;" class="form-control form-control-custom OtherMembersNationalityMobile" maxlength="9" type="tel" onkeypress="return isNumberKey(event)" name="OtherMembersNationalityMobile" id="OtherMembersNationalityMobile" placeholder="XXXXXXXXX">
+                                        <span class="input-group-mask" style=" position: absolute; top: 6px; left: 6px;">(+971) -</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class=" col-md-3 form-group ">
+                                <label class="requiredStar fs-14 text-custom-black fw-500">ID <span class="required">*</span> </label>
+                                <input autocomplete="off" class="form-control form-control-custom OtherMembersNationalityDocuments" maxlength="18" type="text" name="OtherMembersNationalityDocument" id="OtherMembersNationalityDocument" placeholder="ID">
+                            </div>
+
+                            <div class="col-md-3 ">
+                                <label class="requiredStar fs-14 text-custom-black fw-500">Document Type <span class="required">*</span> </label>
+                                <select title="Select DocumentType" id="OtherMembersNationalityDocumentType" class="form-control selectpicker OtherMembersNationalityDocumentType" name="OtherMembersNationalityDocumentType" data-show-subtext="true" multiple data-live-search="true">
+                                    <option value="U">UAE ID</option>
+                                    <option value="P">Passport</option>
+                                    <option value="T">Travel ID</option>
+                                    <option value="S">Security ID</option>
+                                    <option value="C">Company ID</option>
+                                    <option value="B">Birth Certificate</option>
+
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="row pt-4">
+                            <div class="col-md-4" id="FlieUAE" style="display:none;">
+                                <div class="form-group ">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">UAE ID</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                    <input id="InputfileUAE0" style=" padding-top: 5px!important;" type="file" class="form-control form-control-custom DocFile " name="UDoc" />
+                                </div>
+                            </div>
+                            <div class="col-md-4" id="FliePasport" style="display:none;">
+                                <div class="form-group ">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">Passport</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                    <input id="InputfilePassport0" style=" padding-top: 5px!important;" type="file" class="form-control form-control-custom DocFile " name="PDoc" />
+                                </div>
+                            </div>
+                            <div class="col-md-4" id="FlieTravelID" style="display:none;">
+                                <div class="form-group ">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">Travel ID</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                    <input id="InputfileTravel0" style=" padding-top: 5px!important;" type="file" class="form-control form-control-custom DocFile " name="TDoc" />
+                                </div>
+                            </div>
+                            <div class="col-md-4" id="FlieSecurityID" style="display:none;">
+                                <div class="form-group ">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">Security ID</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                    <input id="InputfileSecurity0" style=" padding-top: 5px!important;" type="file" class="form-control form-control-custom DocFile " name="SDoc" />
+                                </div>
+                            </div>
+                            <div class="col-md-4" id="FlieCompanyID" style="display:none;">
+                                <div class="form-group ">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">Company ID</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                    <input id="InputfileCompany0" style=" padding-top: 5px!important;" type="file" class="form-control form-control-custom  DocFile " name="CDoc" />
+                                </div>
+                            </div>
+                            <div class="col-md-4" id="FlieBirthCertificate" style="display:none;">
+                                <div class="form-group ">
+                                    <label class="requiredStar fs-14 text-custom-black fw-500">Birth Certificate</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                    <input id="InputfileBirthdate0" style=" padding-top: 5px!important;" type="file" class="form-control form-control-custom  DocFile " name="BCDoc" />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-check mr-3 ">
+
+                                    <label class="custom-checkbox ">
+                                        <input class="form-check-input RGActiveDelmaIsland" type="checkbox" value=" " name="RGActiveDelmaIsland">
+                                        <span class="checkmark"></span>
+                                        <span class=" mb-0">Are You Delma Resident?</span>
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-3">
+
+                                <div class="form-check ">
+                                    <label class="custom-checkbox ">
+                                        <input class="form-check-input IsHead" type="checkbox" value="1" name="IsHead" checked disabled>
+                                        <span class="checkmark" style="cursor:not-allowed"></span>
+                                        <span class=" mb-0">Are You Group Head?</span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer bg-white d-flex " id="btnRow">
+
+                    <button class="btn btn-xs btn-info mr-2 GroupMembersRegistration" id="GroupMembersRegistration" type="button">Register</button>
+                    <button type="button" id="add-button" class="btn btn-xs btn-info mr-2">Add</button>
+                    <button type="button" id="remove-button" class="btn btn-xs btn-danger mr-2">Remove</button>
+                </div>
+
+            </div>
+
+
+        </form>
+
+    </div>
+    <!-- /.container-fluid -->
+
+
+    <script type="text/x-handlebars" id="temp_Nationality">
+        {{#each this}}
+        <option value="{{countryAbbrev}}">{{countryName}}</option>
+        {{/each}}
+
+    </script>
+
+    <script>
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
+
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/Register/js/AdditionMethod.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/popper.min.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/bootstrap.min.js"></script>
+    <script src="https://www.jqueryscript.net/demo/Bootstrap-4-Dropdown-Select-Plugin-jQuery/dist/js/bootstrap-select.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/slick.min.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/datepicker.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/datepicker.en.js"></script>
+    <script src="@Url.Content("~/Register/js/MobileRegisterCorporate.js")"></script>
+
+</body>
+</html>

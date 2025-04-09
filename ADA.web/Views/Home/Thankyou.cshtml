@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "_Layout";
+}
+@{ViewBag.Title = "Thank You";}
+
+
+
+<style>
+    .jumbotron {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .btn-primary {
+        background-color: #d33333 !important;
+        border-color: #d33333 !important;
+        color: #fff !important
+    }
+</style>
+
+<div class="jumbotron text-center">
+    <h1 class="display-3">Thank You!</h1>
+    <p class="lead"><strong>Your booking </strong> has been completed Successfully</p>
+    <hr>
+    <p>
+        Having trouble? <a href="">Contact us</a>
+    </p>
+    <p class="lead">
+        <a class="btn btn-primary btn-sm homeButton" role="button">Continue to homepage</a>
+    </p>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#preloader').delay(1000).fadeOut('slow', function () {
+            $(this).hide();
+        });
+
+        $('.homeButton').on('click', function () {
+
+            window.location.href = window.location.origin
+        })
+    })
+
+</script>

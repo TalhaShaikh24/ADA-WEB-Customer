@@ -1,0 +1,368 @@
+﻿@{
+    ViewBag.Title = "Flight Result";
+    @using Microsoft.Extensions.Configuration
+    @inject IConfiguration Configuration
+}
+
+<style>
+    .FlightResultsubheader {
+        background-image: url(/assets/images/FlightResult.jpg);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        min-height: 400px;
+    }
+    @@media only screen and (max-width:767px) {
+        .destFont {
+            font-size: 10px;
+        }
+
+        .destIcon {
+            margin-bottom: 0px;
+            transform: rotate(90deg);
+        }
+
+        .toFrom {
+            display: none
+        }
+    }
+
+    @@media only screen and (min-width:889px) {
+        .destColumn {
+            display: contents;
+        }
+    }
+</style>
+<style>
+    * {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+
+    #notfound {
+        position: relative;
+        min-height: 50vh;
+    }
+
+        #notfound .notfound {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+    .notfound {
+        max-width: 560px;
+        width: 100%;
+        padding-left: 160px;
+        line-height: 1.1;
+    }
+
+        .notfound .notfound-404 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: inline-block;
+            width: 140px;
+            height: 140px;
+            background-image: url('/assets/images/emoji.png');
+            background-size: cover;
+        }
+
+            .notfound .notfound-404:before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                /*height: 100%;*/
+                -webkit-transform: scale(2.4);
+                -ms-transform: scale(2.4);
+                transform: scale(2.4);
+                border-radius: 50%;
+                background-color: #f2f5f8;
+                z-index: -1;
+            }
+
+        .notfound h1 {
+            /*font-family: 'Nunito', sans-serif;*/
+            font-size: 65px;
+            font-weight: 700;
+            margin-top: 0px;
+            margin-bottom: 10px;
+            color: #151723;
+            text-transform: uppercase;
+        }
+
+        .notfound h2 {
+            /*font-family: 'Nunito', sans-serif;*/
+            font-size: 21px;
+            font-weight: 400;
+            margin: 0;
+            text-transform: uppercase;
+            color: #151723;
+        }
+
+        .notfound p {
+            /*font-family: 'Nunito', sans-serif;*/
+            color: #999fa5;
+            font-weight: 400;
+        }
+
+        .notfound a {
+            /*font-family: 'Nunito', sans-serif;*/
+            display: inline-block;
+            font-weight: 700;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #388dbc;
+        }
+
+    @@media only screen and (max-width: 767px) {
+        .notfound .notfound-404 {
+            width: 110px;
+            height: 110px;
+        }
+
+        .notfound {
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 110px;
+            top:70px
+        }
+    }
+
+</style>
+<div class="FlightResultsubheader normal-bg section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 FlightResultLang">
+                <h1 key="FlightResults" class="text-custom-white">Flight Results</h1>
+                <ul class="custom-flex justify-content-center ">
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="section-padding bg-light-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="listing-top-heading mb-xl-20">
+                    <h6 class="no-margin text-custom-black" id="ResultData"></h6>
+                    <div class="sort-by d-none FlightResultLang">
+                        <span class="text-custom-black fs-14 fw-600">Sort by</span>
+                        <div class="group-form">
+                            <select class="form-control form-control-custom custom-select">
+                                <option>A to Z</option>
+                                <option>Z to A</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="SearchResultFillAppend">
+
+
+        </div>
+
+        <div class="row d-none">
+            <div class="col-12">
+                <nav>
+                    <ul class="pagination justify-content-center FlightResultLang">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<script type="text/x-handlebars" id="temp_SearchResultFill">
+
+    {{#each this}}
+
+
+    @*<div class="col-lg-5 col-md-6">
+            <div class="flights-grid mb-xl-30">
+                <div class="flights-grid-wrapper bx-wrapper">
+                    <div class="image-sec animate-img d-none">
+                        <a href="#"> <img src="/ADAWEbAPP/assets/images/air.jpg" class="full-width" alt="img"> </a>
+                    </div>
+                    <div class="flights-grid-caption padding-20 bg-custom-white p-relative">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="text-custom-black date" key="Flight" style="color: #b68150; font-weight: 500">Date:</h6>
+                            <h6 class="text-custom-black etd" style="font-weight:500">{{FlightDate etd "DD-MMM-YY"}}</h6>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <h6 class="text-custom-black" key="Flight" style="color: #b68150;font-weight:500">Etd:</h6>
+                            <h6 class="text-custom-black" style="font-weight:500">{{FlightDate etd "HH:mm"}}</h6>
+                        </div>
+
+                        <div class="heading-sec" style="justify-content:center">
+
+
+
+
+                            <div class="title" style=" margin-right: 5px; margin-left: 7px;">
+                                <h4 class="fs-16" style="margin-top: 8px">
+
+                                    <a style="font-size:15px" href="#" class="text-custom-black">{{baseFullname}} &nbsp; <i class="fas fa-plane text-gray" style="margin-right:0px"></i> &nbsp; {{destination}}</a>
+
+                                </h4>
+                                <div class="right-side mb-2"> <span class="price" style="font-size:13px;color:#2e2e2e"><small key="From" style="font-size:13px">Flight#</small>{{fltNumber}}</span> </div>
+                            </div>
+
+
+                        </div>
+                        <div style="justify-content: end;" class="action FlightResultLang">
+
+
+                            <button key="Book" class="btn-first btn-submit bookingnow" id="bookingnow" type="button" data-id={{fltID}} tabindex="-1" style="padding-top: 3px; padding-bottom: 3px; padding-left: 25px; padding-right: 25px; border-radius: 25px;">Book</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    <div class="col-md-6">
+
+        <div class="card mb-3" style="width:100%; border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;">
+            <div class="card-body p-4 mx-3">
+
+
+                <div class="row" style="display: flex; justify-content: space-between;">
+
+                    <P style="color: #b68150;">Departure Date:&nbsp;<b  class="depatureDate" style="color: #67686b;">{{FlightDate etd "DD-MMM-YY"}}</b></P>
+                    <P style="color: #b68150;">ETD: &nbsp;<b class="depatureTime" style="color: #67686b;">{{Time etd "HH:mm"}}</b></P>
+
+                </div>
+
+                <div class="row toFrom" style="justify-content: space-between;">
+
+                    <P style="color: #000;">From: &nbsp;<b style="color: #67686b;"></b></P>
+                    <P style="color: #b68150;">To: &nbsp;<b style="color: #67686b;"></b></P>
+
+                </div>
+
+
+
+                <div class="row" style="display: flex; justify-content: space-between;">
+                    @*<p style="color: #b68150;">{{baseFullname}} &nbsp;</p>
+                        ---------
+                        <i class="fa fa-plane " aria-hidden="true" style="font-size: 24px;color: #372e2c;"></i>&nbsp;
+                        ---------
+                        <p style="color: #67686b;">{{destination}}</p>*@
+
+                    <div class="col-md-5 col-sm-12 px-0 destColumn">
+
+                        <p class="destFont" style="color: #b68150;">{{baseFullname}} &nbsp;</p>
+                    </div>
+                    <div class="col-md-2 col-sm-12 destColumn ">
+                        <i class="fa fa-plane destIcon" aria-hidden="true" style="font-size: 24px;color: #372e2c;margin-bottom: 20px"></i>&nbsp;
+                    </div>
+                    <div class="col-md-5 col-sm-12 px-0 destColumn">
+                        <p class="destFont " style="color: #67686b;">{{destination}}</p>
+                    </div>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items: baseline;" class="row action FlightResultLang">
+                    <p style="color: #b68150;">Flight no:&nbsp;<b style="color: #67686b;">{{fltNumber}}</b></p>
+                    @*<div style="display:flex"> <p style="color: #b68150;"> &nbsp; </p>&nbsp;{{fltNumber}}</div>*@
+                    <button key="Book" class="btn-first btn-submit bookingnow" id="bookingnow" type="button" data-id={{fltID}} tabindex="-1" style="padding-top: 3px; padding-bottom: 3px; padding-left: 25px; padding-right: 25px; border-radius: 25px;">Book</button>
+                </div>
+
+
+            </div>
+            @*fa-flip-horizontal*@
+        </div>
+
+        <!-- End -->
+    </div>
+
+
+    {{/each}}
+</script>
+
+<script type="text/x-handlebars" id="temp_SearchResultFillAr">
+
+    {{#each this}}
+
+
+
+
+    <div class="col-md-6">
+
+        <div class="card mb-3" style="width:100%; border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;">
+            <div class="card-body p-4 mx-3">
+
+
+                <div class="row" style="display: flex; justify-content: space-between;">
+
+                    <P style="color: #b68150;">تاريخ المغادرة:&nbsp;<b  id="sss" style="color: #67686b;">{{FlightDate etd "DD-MMM-YY"}}</b></P>
+                    <P style="color: #b68150; ">ETD: &nbsp;<b style="color: #67686b;">{{FlightDate etd "HH:mm"}}</b></P>
+
+                </div>
+
+                <div class="row toFrom" style="justify-content: space-between;">
+
+                    <P style="color: #000;">تحلق من: &nbsp;<b style="color: #67686b;"></b></P>
+                    <P style="color: #b68150;">تحلق إلى: &nbsp;<b style="color: #67686b;"></b></P>
+
+                </div>
+
+
+
+                <div class="row" style="display: flex; justify-content: space-between;">
+
+                    <div class="col-md-5 col-sm-12 px-0 destColumn">
+
+                        <p class="destFont" style="color: #b68150;">{{baseFullnameArabic}} &nbsp;</p>
+                    </div>
+                    <div class="col-md-2 col-sm-12 destColumn">
+                        <i class="fa fa-plane destIcon" aria-hidden="true" style="font-size: 24px;color: #372e2c;margin-bottom: 20px"></i>&nbsp;
+                    </div>
+                    <div class="col-md-5 col-sm-12 px-0 destColumn">
+                        <p class="destFont " style="color: #67686b;">{{destinationArabic}}</p>
+                    </div>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items: baseline;" class="row action FlightResultLang">
+
+                    @*<div style="display:flex"> <p style="color: #b68150;">رقم الرحلة: &nbsp; </p>&nbsp;{{fltNumber}}</div>*@
+                    <p style="color: #b68150;">رقم الرحلة: &nbsp;<b style="color: #67686b;">{{fltNumber}}</b></p>
+                    <button key="Book" class="btn-first btn-submit bookingnow" id="bookingnow" type="button" data-id={{fltID}} tabindex="-1" style="padding-top: 7px; padding-bottom: 8px; padding-left: 25px; padding-right: 25px; border-radius: 25px;">حجز</button>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <!-- End -->
+    </div>
+
+    {{/each}}
+</script>
+
+
+@section scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/ar.min.js" integrity="sha512-EOEeyWHiCPkh0uHPbUjyQsrQtLaG1qR+TvKVctJjmRPzYiCTQAuszMsZGM6ms5oBWZyl3KvtaRkKigSzi/vGZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="@Url.Content("~/Register/js/FlightResults.js")"></script>
+    <script src="~/Register/js/Languages.js"></script>
+}

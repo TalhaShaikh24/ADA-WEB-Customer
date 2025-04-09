@@ -1,0 +1,338 @@
+﻿@{Layout = null;}
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="keywords" content="#">
+        <meta name="description" content="#">
+        <title>Individual Registration</title>
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/favicon.ico">
+        <link rel="shortcut icon" href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/favicon.ico">
+        <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+        <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/font/flaticon.css" rel="stylesheet">
+        <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/slick.css" rel="stylesheet">
+        <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/ion.rangeSlider.min.css" rel="stylesheet">
+        <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/datepicker.css" rel="stylesheet">
+        <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/magnific-popup.css" rel="stylesheet">
+        <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/nice-select.css" rel="stylesheet">
+        <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/responsive.css" rel="stylesheet">
+        <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/style.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://www.jqueryscript.net/demo/Bootstrap-4-Dropdown-Select-Plugin-jQuery/dist/css/bootstrap-select.css" />
+
+    </head>
+
+   
+
+    <body class="coming-soon parallax">
+        @*<style>
+            .extensionDoc {
+                color: grey;
+                font-size: 11px;
+            }
+
+            .required {
+                color: red
+            }
+            @@media only screen and (max-width:768px){
+                h1 {
+                    font-size: 30px!important;
+                }
+            }
+        </style>*@
+
+        <style>
+            body#ar {
+                contain: inherit !important;
+            }
+            .dropdown-toggle::after{
+                margin-left:-4px!important;
+                margin-right:-4px!important;
+            }
+            .validation-error-message {
+                /*display: block!important;*/
+                height: 0px;
+            }
+            a, button {
+                cursor: pointer !important
+            }
+        </style>
+
+
+        <div class="container loginContainer" style="margin-top: 50px; margin-bottom: 50px;">
+            <div class="row no-gutters">
+                <div class="col-lg-12">
+                    <div class="full-height Login-Text RegisterLang" style="padding-top:60px">
+                        <div class="row">
+                            <div class="col-12">
+                                <a style="cursor: pointer; " onclick="window.history.back()" title="Back"> <i class="fas fa-arrow-left" style="font-size: 30px; color :#372e2c"></i></a>
+                            </div>
+                            <div class="col-12 LoginLang">
+                                <h1 key="Login" class="text-custom-black">Register a new user</h1>
+
+                            </div>
+
+                        </div>
+
+
+                        <form id="RegisterForm" role="form">
+                            <div class="row mb-md-80 d-flex align-items-center">
+
+                                <div class="col-md-4">
+                                    <div class="form-group RegisterLang">
+                                        <label key="Title" class="requiredStar fs-14 text-custom-black fw-500">Title <span class="required">*</span> </label>
+                                        <div class="group-form inputFields RegisterLang ">
+                                            <select Titlekey="Title" class=" selectpicker RegisterLang form-control form-control-custom Honorifics" id="Honorifics" name="Honorifics" dir="rtl">
+                                                <option disabled selected value="0" name="Mr">Mr</option>
+                                                <option key="Mr" value="Mr" name="Mr">Mr</option>
+                                                <option key="Ms" value="Ms" name="Ms">Ms</option>
+                                                <option key="Mrs" value="Mrs" name="Mrs">Mrs</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group RegisterLang">
+                                        <label key="Name" class="requiredStar fs-14 text-custom-black fw-500">Name <span class="required">*</span> </label>
+                                        <input maxlength="50" autocomplete="off" InputKey="Name" class="form-control form-control-custom" type="text" name="Name" id="Name" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group RegisterLang">
+                                        <label key="Email" class="requiredStar fs-14 text-custom-black fw-500">Email <span class="text-secondary">(Optional)</span> </label>
+                                        <input maxlength="60" autocomplete="off" InputKey="Email" class="form-control form-control-custom" type="text" name="Email" id="Email" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group RegisterLang">
+                                        <label key="Username" class="requiredStar fs-14 text-custom-black fw-500">Username <span class="required">*</span> </label>
+                                        <input maxlength="50" autocomplete="off" InputKey="Username" class="form-control form-control-custom" type="text" name="Username" id="Username" placeholder="Username">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 ">
+                                    <div class="form-group RegisterLang">
+                                        <label key="Password" class="requiredStar fs-14 text-custom-black fw-500 validate[required,minSize[8]]">Password <span class="required">*</span> </label>
+                                        <input maxlength="20" autocomplete="off" InputKey="Password" class="form-control form-control-custom" type="password" name="Password" id="Password" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+
+                                    <div class="form-group RegisterLang">
+                                        <label key="Birthdate" class="requiredStar fs-14 text-custom-black fw-500">Birthdate <span class="required">*</span> </label>
+                                        <div class="input-group group-form">
+                                            <input autocomplete="off" type="text"  readonly="readonly" name="Birthdate" id="Birthdate" class="form-control form-control-custom " placeholder="dd-mmm-yyyy"  />
+                                            <span class="input-group-append">
+                                                <i class="far fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group RegisterLang">
+                                        <label key="Nationality" class="requiredStar fs-14 text-custom-black fw-500">Nationality <span class="required">*</span> </label>
+                                        <div class="group-form inputFields RegisterLang">
+                                            <select Titlekey="Nationality" data-live-search="true" id="Nationality" name="Nationality" class="selectpicker form-control" data-size="5" title="Nationality">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group RegisterLang">
+                                        <label key="Mobile" class="requiredStar fs-14 text-custom-black fw-500">Mobile <span class="required">*</span> </label>
+                                        <div class="input-group group-form">
+
+                                            <input autocomplete="off" Inputkey="Mobile" style=" padding-left: 64px;padding-right: 64px;" class="form-control form-control-custom" maxlength="9" type="tel" onkeypress="return isNumberKey(event)" name="Mobile" id="Mobile" placeholder="XXXXXXXXX">
+
+                                            <span class="input-group-mask">(+971) -</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group RegisterLang">
+                                        <label key="Passport" class="requiredStar fs-14 text-custom-black fw-500">ID <span class="required">*</span> </label>
+                                        <input autocomplete="off" Inputkey="Passport" class="form-control form-control-custom" maxlength="18" type="text" name="Documents" id="Documents" placeholder="ID">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group RegisterLang">
+                                        <label key="DocumentType" class="requiredStar fs-14 text-custom-black fw-500">Document Type <span class="required">*</span> </label>
+                                        <div class="group-form inputFields RegisterLang">
+                                            <select Titlekey="DocumentTypee" multiple id="DocumentType" name="DocumentType" class=" RegisterLang selectpicker form-control DocumentType ">
+                                                <option key="UAEID" value="U">UAE ID</option>
+                                                <option key="Passport" value="P">Passport</option>
+                                                <option key="TravelID" value="T">Travel ID</option>
+                                                <option key="SecurityID" value="S">Security ID</option>
+                                                <option key="CompanyID" value="C">Company ID</option>
+                                                <option key="BirthCertificate" value="B">Birth Certificate</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row wrapper_Block" style="width: 100%; position: relative; left: 2%; margin-right: 20px; ">
+                                    <div class="col-md-4" id="FlieUAE" style="display: none;">
+                                        <div class="form-group RegisterLang">
+                                            <label key="UploadUAEID" class=" requiredStar fs-14 text-custom-black fw-500">UAE ID <span class="required">*</span>  <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span> </label>
+                                            <input class="form-control form-control-custom pt-1" type="file" name="files1" id="files1">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" id="FliePasport" style="display: none;">
+                                        <div class="form-group RegisterLang">
+                                            <label key="UploadPassport" class="requiredStar fs-14 text-custom-black fw-500">Passport <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                            <input class="form-control form-control-custom pt-1" type="file" name="files2" id="files2">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" id="FlieTravelID" style="display: none;">
+                                        <div class="form-group RegisterLang">
+                                            <label key="UploadTravelID" class="requiredStar fs-14 text-custom-black fw-500">Travel ID <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                            <input class="form-control form-control-custom pt-1" type="file" name="files3" id="files3">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" id="FlieSecurityID" style="display: none;">
+                                        <div class="form-group RegisterLang">
+                                            <label key="UploadSecurityID" class="requiredStar fs-14 text-custom-black fw-500">Security ID <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                            <input class="form-control form-control-custom pt-1" type="file" name="files4" id="files4">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" id="FlieCompanyID" style="display: none;">
+                                        <div class="form-group RegisterLang">
+                                            <label key="UploadCompanyID" class=" requiredStar fs-14 text-custom-black fw-500">Company ID <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                            <input class="form-control form-control-custom pt-1" type="file" name="files5" id="files5">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" id="FlieBirthCertificate" style="display: none;">
+                                        <div class="form-group RegisterLang">
+                                            <label key="UploadBirthCertificate" class="requiredStar fs-14 text-custom-black fw-500">Birth Certificate  <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                            <input class="form-control form-control-custom pt-1" type="file" name="files6" id="files6">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="width:84%">
+
+                                    <div class="col-md-4 mt-2" style="display: flex; justify-content: center; flex-direction: row;">
+                                        <div class="form-group RegisterLang">
+                                            <label class=" custom-checkbox RegisterLang">
+                                                <input type="checkbox" name="ActiveDelmaIsland" id="ActiveDelmaIsland">
+                                                <span class="checkmark"></span>
+                                                <p key="AreYouDelmaResident">Are You Delma Resident?</p>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mt-2" style="display: none; justify-content: center; flex-direction: row;">
+                                        <div class="form-group RegisterLang">
+                                            <label key="" class=" custom-checkbox RegisterLang">
+                                                <input type="checkbox" name="ActiveUAEID" id="ActiveUAEID">
+                                                <span class="checkmark"></span>
+                                                <p key="AreYouUAEResident">Are You UAE Resident?</p>
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12">
+                                    <div class=" form-group text-right mb-0 RegisterLang">
+                                        <button key="Register" type="button" id="registerUser" class="btn-first btn-small ">Register</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="preloader"></div>
+
+        <input type="hidden" id="baseApiUrl" value="@Configuration.GetSection("UrlSetting").GetSection("baseApiUrl").Value" />
+        <input type="hidden" id="baseWebUrl" value="@Configuration.GetSection("UrlSetting").GetSection("baseWebUrl").Value" />
+        <input type="hidden" id="LiveWebUrl" value="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value" />
+        <input type="hidden" id="baseUrlForMVCAction" value="@Configuration.GetSection("UrlSetting").GetSection("baseUrlForMVCAction").Value" />
+
+
+
+
+        <script type="text/x-handlebars" id="temp_Nationality">
+
+            {{#each this}}
+            <option value="{{countryAbbrev}}">{{countryName}}</option>
+            {{/each}}
+
+        </script>
+        <script type="text/x-handlebars" id="temp_NationalityAR">
+
+            {{#each this}}
+            <option value="{{countryAbbrev}}">{{countryNameAR}}</option>
+            {{/each}}
+
+        </script>
+        <script>
+            function isNumberKey(evt) {
+                var charCode = (evt.which) ? evt.which : event.keyCode
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
+                return true;
+            }
+        </script>
+        <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/jquery.min.js"></script>
+        <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/popper.min.js"></script>
+        <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/bootstrap.min.js"></script>
+        <script src="https://www.jqueryscript.net/demo/Bootstrap-4-Dropdown-Select-Plugin-jQuery/dist/js/bootstrap-select.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+        <script src="~/assets/js/ion.rangeSlider.min.js"></script>
+        <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/slick.min.js"></script>
+        <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/datepicker.js"></script>
+        <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/datepicker.en.js"></script>
+        <script src="~/assets/js/CustomInputMask.min.js"></script>
+        <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/isotope.pkgd.min.js"></script>
+        <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/jquery.nice-select.js"></script>
+        <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/jquery.magnific-popup.min.js"></script>
+        <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/custom.js"></script>
+        <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/Register/js/Register.js"></script>
+        <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/Register/js/AdditionMethod.js"></script>
+        <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/Register/js/Languages.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/ar.min.js" integrity="sha512-EOEeyWHiCPkh0uHPbUjyQsrQtLaG1qR+TvKVctJjmRPzYiCTQAuszMsZGM6ms5oBWZyl3KvtaRkKigSzi/vGZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

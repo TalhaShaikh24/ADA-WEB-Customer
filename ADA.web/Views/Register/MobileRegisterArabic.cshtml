@@ -1,0 +1,968 @@
+﻿@{Layout = null;}
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Individual Registration</title>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/favicon.ico">
+    <link rel="shortcut icon" href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css" integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/font/flaticon.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/slick.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/ion.rangeSlider.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/magnific-popup.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/nice-select.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/style.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/responsive.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.jqueryscript.net/demo/Bootstrap-4-Dropdown-Select-Plugin-jQuery/dist/css/bootstrap-select.css" />
+
+
+</head>
+
+
+
+<body>
+    <style>
+        body {
+            overflow-x: hidden !important;
+        }
+
+
+        .selector-for-some-widget {
+            box-sizing: content-box;
+        }
+
+        .extensionDoc {
+            color: grey;
+            font-size: 11px;
+        }
+
+        .required {
+            color: red
+        }
+
+        label {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            background: #f8f9fa !important;
+        }
+
+        button.btn.dropdown-toggle.bs-placeholder, .bootstrap-select.btn-group > .dropdown-toggle {
+            background: #f8f9fa !important;
+        }
+
+        #Birthdate-error {
+            text-align: right !important;
+        }
+
+        .bootstrap-select.btn-group .dropdown-toggle .filter-option {
+            display: inline-block;
+            overflow: hidden;
+            width: 100%;
+            text-align: right !important;
+        }
+
+        .dropdown-toggle::after {
+            position: relative;
+            left: 20px;
+            top: -5px;
+        }
+
+        .datepicker {
+            right: 25px !important;
+        }
+    </style>
+
+    <div class="container pl-4 pr-4" style="direction:rtl; overflow:hidden" lang="ar">
+
+
+        <div class="row">
+
+            <div class="col-md-12 mb-5 mt-3 pr-3 pl-3">
+
+
+                <form id="RegisterForm" role="form">
+
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <div class="form-group RegisterLang">
+                                <label key="Title" class="fs-14 text-custom-black fw-500">اللقب <span class="required">*</span> </label>
+                                <div class="group-form inputFields RegisterLang ">
+                                    <select Titlekey="Title" class=" RegisterLang form-control selectpicker Honorifics" id="Honorifics" name="Honorifics" dir="rtl">
+                                        <option key="Mr" value="Mr" name="Mr">السيد</option>
+                                        <option key="Ms" value="Ms" name="Ms">آنسة</option>
+                                        <option key="Mrs" value="Mrs" name="Mrs">السيدة</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <div class="form-group RegisterLang">
+                                <label key="Name" class="fs-14 text-custom-black fw-500">الاسم <span class="required">*</span> </label>
+                                <input autocomplete="off" InputKey="Name" maxlength="50" class="form-control form-control-custom" type="text" name="Name" id="Name" placeholder="Name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group RegisterLang">
+                                <label key="Email" class="fs-14 text-custom-black fw-500">البريد الإلكتروني <span class="text-secondary">(خياري)</span> </label>
+                                <input autocomplete="off" InputKey="Email" maxlength="60" class="form-control form-control-custom" type="text" name="Email" id="Email" placeholder="Email">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group RegisterLang">
+                                <label key="Username" class="fs-14 text-custom-black fw-500">اسم المستخدم <span class="required">*</span> </label>
+                                <input autocomplete="off" InputKey="Username" maxlength="50" class="form-control form-control-custom" type="text" name="Username" id="Username" placeholder="Username">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <div class="form-group RegisterLang">
+                                <label key="Password" class="fs-14 text-custom-black fw-500">كلمة المرور <span class="required">*</span> </label>
+                                <input autocomplete="off" InputKey="Password" maxlength="20" class="form-control form-control-custom" type="password" name="Password" id="Password" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="form-group FlightSearchLang">
+                                <label key="Birthdate" class="fs-14 text-custom-black fw-500">
+                                    تاريخ الولادة
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="input-group group-form">
+
+                                    <div style="position: relative; width: 100%;">
+                                        <input autocomplete="off" type="text" name="Birthdate" id="Birthdate" class="form-control form-control-custom " placeholder="دد-ممم-سسس" readonly="readonly" />
+                                        <input autocomplete="off" type="text" name="Birthdatetext" id="Birthdatetext" class="form-control form-control-custom " placeholder="دد-ممم-سسس" readonly="readonly" style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; width: 100%;" />
+                                    </div>
+
+                                    <span class="input-group-append">
+                                        <i class="far fa-calendar"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group RegisterLang">
+                                <label key="Nationality" class="fs-14 text-custom-black fw-500">الجنسية <span class="required">*</span> </label>
+                                <div class="group-form inputFields RegisterLang">
+                                    <select Titlekey="Nationality" data-live-search="true" id="Nationality" title="الجنسية" name="Nationality" class="selectpicker form-control" data-size="10">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group RegisterLang">
+                                <label key="Mobile" class="fs-14 text-custom-black fw-500">الهاتف المحمول <span class="required">*</span> </label>
+                                <div class="input-group group-form">
+
+                                    <input autocomplete="off" Inputkey="Mobile" style=" padding-left: 64px;padding-right: 64px;" class="form-control form-control-custom" maxlength="9" type="tel" onkeypress="return isNumberKey(event)" name="Mobile" id="Mobile" placeholder="XXXXXXXXX">
+
+                                    <span class="input-group-mask">(+971) -</span>
+                                </div>
+                                @*<input Inputkey="Mobile" class="form-control form-control-custom" maxlength="9" type="tel" name="Mobile" id="Mobile" placeholder="Mobile" required>*@
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group RegisterLang">
+                                <label key="Passport" class="fs-14 text-custom-black fw-500">رقم الهوية<span class="required">*</span> </label>
+                                <input autocomplete="off" Inputkey="Passport" maxlength="18" class="form-control form-control-custom" type="text" name="Documents" id="Documents" placeholder="Passport" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group RegisterLang">
+                                <label key="DocumentType" class="fs-14 text-custom-black fw-500">نوع الوثيقة <span class="required">*</span> </label>
+                                <div class="group-form inputFields RegisterLang">
+                                    <select Titlekey="DocumentTypee" multiple id="DocumentType" title="حدد نوع المستند" name="DocumentType" class=" RegisterLang selectpicker form-control DocumentType ">
+                                        <option value="U">الهوية الإماراتية</option>
+                                        <option value="P">جواز سفر</option>
+                                        <option value="T">معرف السفر</option>
+                                        <option value="S">معرف الأمان</option>
+                                        <option value="C">هوية الشركة</option>
+                                        <option value="B">شهادة الميلاد</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row wrapper_Block" style="width:100%">
+                        <div class="col-md-12" id="FlieUAE" style="display: none;">
+                            <div class="form-group RegisterLang">
+                                <label key="UploadUAEID" class="fs-14 text-custom-black fw-500">تحميل الإمارات الهوية<span class="required">*</span>  <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span> </label>
+                                <input class="form-control form-control-custom pt-1" type="file" name="files1" id="files1">
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="FliePasport" style="display: none;">
+                            <div class="form-group RegisterLang">
+                                <label key="UploadPassport" class="fs-14 text-custom-black fw-500">تحميل جواز السفر<span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                <input class="form-control form-control-custom pt-1" type="file" name="files2" id="files2">
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="FlieTravelID" style="display: none;">
+                            <div class="form-group RegisterLang">
+                                <label key="UploadTravelID" class="fs-14 text-custom-black fw-500">تحميل هوية السفر <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                <input class="form-control form-control-custom pt-1" type="file" name="files3" id="files3">
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="FlieSecurityID" style="display: none;">
+                            <div class="form-group RegisterLang">
+                                <label key="UploadSecurityID" class="fs-14 text-custom-black fw-500">تحميل هوية الأمن<span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                <input class="form-control form-control-custom pt-1" type="file" name="files4" id="files4">
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="FlieCompanyID" style="display: none;">
+                            <div class="form-group RegisterLang">
+                                <label key="UploadCompanyID" class="fs-14 text-custom-black fw-500">تحميل هوية الشركة<span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                <input class="form-control form-control-custom pt-1" type="file" name="files5" id="files5">
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="FlieBirthCertificate" style="display: none;">
+                            <div class="form-group RegisterLang">
+                                <label key="UploadBirthCertificate" class="fs-14 text-custom-black fw-500">تحميل شهادة الميلاد<span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                <input class="form-control form-control-custom pt-1" type="file" name="files6" id="files6">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-2">
+                            <div class="form-group RegisterLang">
+                                <label class="custom-checkbox RegisterLang">
+                                    <input type="checkbox" name="ActiveDelmaIsland" id="ActiveDelmaIsland">
+                                    <span class="checkmark"></span>
+                                    <span>هل أنت مقيم في دلما؟</span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-12">
+                        <div class="form-group text-right mb-0 RegisterLang">
+                            <button key="Register" type="button" id="registerUser" class="btn-first btn-small ">يسجل</button>
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </form>
+
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+    <div id="preloader"></div>
+
+    <input type="hidden" id="baseApiUrl" value="@Configuration.GetSection("UrlSetting").GetSection("baseApiUrl").Value" />
+    <input type="hidden" id="baseWebUrl" value="@Configuration.GetSection("UrlSetting").GetSection("baseWebUrl").Value" />
+    <input type="hidden" id="LiveWebUrl" value="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value" />
+    <input type="hidden" id="baseUrlForMVCAction" value="@Configuration.GetSection("UrlSetting").GetSection("baseUrlForMVCAction").Value" />
+    
+    <script>
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
+
+    <script type="text/x-handlebars" id="temp_Nationality">
+
+        {{#each this}}
+        <option value="{{countryAbbrev}}">{{countryName}}</option>
+        {{/each}}
+
+    </script>
+    <script type="text/x-handlebars" id="temp_NationalityAR">
+
+        {{#each this}}
+        <option value="{{countryAbbrev}}">{{countryNameAR}}</option>
+        {{/each}}
+
+    </script>
+
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/jquery.min.js"></script>
+    <script src="https://cdn.rtlcss.com/bootstrap/v4.5.3/js/bootstrap.bundle.min.js" integrity="sha384-40ix5a3dj6/qaC7tfz0Yr+p9fqWLzzAXiwxVLt9dw7UjQzGYw6rWRhFAnRapuQyK" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous"></script>
+    <script src="~/Register/js/AdditionMethod.js"></script>
+    <script src="https://www.jqueryscript.net/demo/Bootstrap-4-Dropdown-Select-Plugin-jQuery/dist/js/bootstrap-select.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="~/assets/js/CustomInputMask.min.js"></script>
+    <script src="~/assets/js/ion.rangeSlider.min.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/slick.min.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/isotope.pkgd.min.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/jquery.nice-select.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/custom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.ar.min.js" integrity="sha512-rdmfDN1kbYc+OJTJsY9LCoXGUjuXaMwrUwBGdLmGs4g9MwdlgnFdfZPRMlFIOB9xTTyauBfAOV/R4BQDwqxg9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/Register/js/Languages.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/ar.min.js" integrity="sha512-EOEeyWHiCPkh0uHPbUjyQsrQtLaG1qR+TvKVctJjmRPzYiCTQAuszMsZGM6ms5oBWZyl3KvtaRkKigSzi/vGZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript">
+
+        var IfArabic = 'ar';
+        var LiveWebUrl = $("#LiveWebUrl").val();
+        var ApiUrl = $("#baseApiUrl").val();
+        var Language = 'ar';
+
+
+        $(document).ready(function () {
+
+            ArabicLanguage();
+
+            $('#preloader').show()
+
+
+            $(".Nationality").change(function () {
+
+                $(this).valid();
+
+            });
+
+            $("#Birthdatetext").click(function () {
+
+                $('#Birthdate').datepicker("show");
+            });
+
+            $('#Birthdate').datepicker({
+
+                format: "dd/mm/yyyy",
+                todayHighlight: true,
+                autoclose: true,
+                startDate: false,
+                endDate: new Date(),
+                language: 'ar'
+            });
+
+            $('#Birthdate').change(function () {
+
+                debugger
+                var DBOTop = $("#Birthdate").val();
+
+                var DBODate = moment(DBOTop, "DD-MM-YYYY").locale("ar").format("DD-MMM-YYYY");
+
+                $("#Birthdatetext").val(DBODate);
+
+
+                var dob = moment(DBOTop, "DD-MM-YYYY").locale("en").format("YYYY-MM-DD");
+
+                if (dob != '') {
+
+                    var agemonths = moment().diff(moment(dob, 'YYYY-MM-DD'), 'month');
+
+                    if (agemonths <= 6) {
+                        swal({
+                            icon: "info",
+                            title: IfArabic ? "أنت رضيع" : "You are an infant",
+                            confirmButtonText: IfArabic ? "موافق" : "OK",
+                            text: IfArabic ? "غير مسموح بالتسجيل" : "Registration not allowed.",
+                        });
+
+                        $('#registerUser').hide();
+                    }
+                    else {
+                        $('#registerUser').show();
+                    }
+
+
+                }
+
+
+            });
+
+            GetAllDropDown();
+        });
+
+        $(document).on('change', '.DocumentType', function () {
+
+
+
+            if ($(".DocumentType").selectpicker("val").some(x => x == "U")) {
+                $("#FlieUAE").css({ "display": "block" });
+
+            }
+
+            else {
+
+                $("#FlieUAE").css({ "display": "none" });
+            }
+
+            if ($(".DocumentType").selectpicker("val").some(x => x == "P")) {
+
+                $("#FliePasport").css({ "display": "block" });
+
+            }
+            else {
+
+                $("#FliePasport").css({ "display": "none" });
+            }
+            if ($(".DocumentType").selectpicker("val").some(x => x == "T")) {
+                $("#FlieTravelID").css({ "display": "block" });
+
+            }
+            else {
+
+                $("#FlieTravelID").css({ "display": "none" });
+            }
+
+
+            if ($(".DocumentType").selectpicker("val").some(x => x == "S")) {
+                $("#FlieSecurityID").css({ "display": "block" });
+
+            } else {
+
+                $("#FlieSecurityID").css({ "display": "none" });
+            }
+
+            if ($(".DocumentType").selectpicker("val").some(x => x == "C")) {
+                $("#FlieCompanyID").css({ "display": "block" });
+
+            } else {
+
+                $("#FlieCompanyID").css({ "display": "none" });
+            }
+
+            if ($(".DocumentType").selectpicker("val").some(x => x == "B")) {
+                $("#FlieBirthCertificate").css({ "display": "block" });
+
+            } else {
+
+                $("#FlieBirthCertificate").css({ "display": "none" });
+            }
+
+        });
+
+
+        function GetAllDropDown() {
+
+
+            postRequest(ApiUrl + "Flight/GetAllDropdowns", null, function (res) {
+
+                if (res.status == 200) {
+
+                    debugger
+                    if (res.data && res.data != null) {
+
+                        if (IfArabic) {
+
+                            fillData(res.data.country, "#temp_NationalityAR", "#Nationality", true);
+                            $('#Birthdate').attr('placeholder', "مم/دد/سسسس")
+                            $('#Honorifics').parent().find('.filter-option').children().css({ "text-align": "right" }).text('اللقب')
+                            $('#Nationality').parent().find('.filter-option').children().css({ "text-align": "right" }).text('الجنسية')
+                            $('#DocumentType').parent().find('.filter-option').children().css({ "text-align": "right" }).text('نوع الوثيقة')
+
+
+
+                        }
+                        else {
+                            fillData(res.data.country, "#temp_Nationality", "#Nationality", true);
+                            $('#Honorifics').parent().find('.filter-option').children().text('Title').css({ "text-align": "left" })
+                            $('#Nationality').parent().find('.filter-option').children().text('Nationality').css({ "text-align": "left" })
+                            $('#DocumentType').parent().find('.filter-option').children().text('Document Type').css({ "text-align": "left" })
+                        }
+
+
+
+                        $('#preloader').hide();
+                    }
+                    $('#preloader').hide();
+                }
+                if (res.status == 401) {
+                    $('#preloader').hide();
+                    localStorage.removeItem("Menu");
+                    localStorage.removeItem("userData");
+                    window.location.href = baseWebUrl + "Dashboard";
+                }
+                if (res.status == 403) {
+
+                    $('#preloader').hide();
+                    swal(res.responseMsg, {
+                        icon: "error",
+                        title: "Error",
+                    });
+                }
+                if (res.status == 500) {
+                    $('#preloader').hide();
+                    swal({
+                        title: "Error",
+                        text: res.responseMsg,
+                        icon: "error",
+                        dangerMode: true,
+                    })
+                }
+
+                if (res.status == 420) {
+                    $('#preloader').hide();
+                    localStorage.removeItem("Menu");
+                    localStorage.removeItem("userData");
+                    window.location.href = baseWebUrl + "Dashboard";
+                }
+
+                if (res.status == 600) {
+                    $('#preloader').hide();
+                    swal({
+                        title: "Error",
+                        text: res.responseMsg,
+                        icon: "error",
+                        dangerMode: true,
+                    })
+                }
+
+            });
+
+
+        }
+
+
+
+        $("#registerUser").click(function () {
+
+            if ($("#RegisterForm").valid()) {
+                $('#preloader').show();
+                var formData = new FormData();
+
+                var FileData = [];
+
+                var RowLength = $(".wrapper_Block").children().length;
+
+                debugger;
+
+                for (var i = 1; i <= RowLength; i++) {
+
+
+                    var files = $(".wrapper_Block").find(`#files${i}`).get(0).files;
+
+                    if (files.length != 0) {
+
+
+                        FileData.push(files[0]);
+
+                    }
+
+                }
+                for (var i = 0; i < FileData.length; i++) {
+
+
+                    formData.append("fileInput", FileData[i]);
+
+                }
+
+                formData.append("Language", Language),
+                    formData.append("Honorifics", $('.Honorifics').selectpicker("val"))
+                formData.append("Name", $("#Name").val())
+                formData.append("Email", $("#Email").val())
+                formData.append("Nationality", $("#Nationality").val())
+                formData.append("Username", $("#Username").val())
+                formData.append("Password", $("#Password").val())
+                formData.append("Birthdate", moment($('#Birthdate').val(), "DD-MM-YYYY").locale("en").format("YYYY-MM-DD"))
+                formData.append("Mobile", $('#Mobile').val())
+                formData.append("Documents", $("#Documents").val())
+                formData.append("DocumentType", $("#DocumentType").val())
+                formData.append("IsDelmaIsland", $('#ActiveDelmaIsland').is(":checked"))
+                formData.append("IsUAEId", $('#ActiveUAEID').is(":checked"))
+
+                postRequestWithoutStringfy(ApiUrl + "Register/Add", formData, function (res) {
+
+                    if (res.status == 200) {
+                        {
+
+                            $('#preloader').hide();
+
+                            swal({
+                                icon: "success",
+                                title: IfArabic ? "مسجل بنجاح" : "Registered Successfully",
+                                confirmButtonText: IfArabic ? "موافق" : "OK",
+                                dangerMode: false,
+                                text: IfArabic ? "يمكنك الآن تسجيل الدخول" : "You can now Login",
+                            });
+
+                            $(document).find("input").val('');
+                            $(document).find("select").val('').change();
+                            $("#RegisterForm").data('validator').resetForm();
+
+                        }
+                    }
+                    if (res.status == 401) {
+                        $('#preloader').hide();
+                        localStorage.removeItem("Menu");
+                        localStorage.removeItem("userData");
+                        window.location.href = baseWebUrl + "Dashboard";
+                    }
+                    if (res.status == 403) {
+
+                        $('#preloader').hide();
+                        swal(res.responseMsg, {
+                            icon: "error",
+                            title: IfArabic ? "خطأ" : "Error",
+                            confirmButtonText: IfArabic ? "موافق" : "OK",
+                            dangerMode: true,
+                            text: IfArabic ? "عفواً! هنالك خطأ ما" : "Ooops! Something went wrong.",
+                        });
+                    }
+                    if (res.status == 500) {
+                        $('#preloader').hide();
+                        swal({
+                            title: IfArabic ? "خطأ" : "Error",
+                            text: IfArabic ? "هناك خطأ ما!" : res.responseMsg,
+                            icon: "error",
+                            dangerMode: true,
+                            confirmButtonText: IfArabic ? "موافق" : "OK",
+                        })
+                    }
+
+                    if (res.status == 420) {
+                        $('#preloader').hide();
+                        localStorage.removeItem("Menu");
+                        localStorage.removeItem("userData");
+                        window.location.href = baseWebUrl + "Dashboard";
+                    }
+
+                    if (res.status == 600) {
+                        $('#preloader').hide();
+                        swal({
+                            title: IfArabic ? "خطأ" : "Error",
+                            text: IfArabic ? "هناك خطأ ما!" : res.responseMsg,
+                            icon: "error",
+                            dangerMode: true,
+                            confirmButtonText: IfArabic ? "موافق" : "OK",
+                        })
+                    }
+
+                });
+
+
+            }
+        });
+
+
+
+        $("#RegisterForm").validate({
+
+            rules: {
+                Honorifics: {
+                    required: true,
+
+                },
+                Name: {
+                    required: true,
+
+                },
+                Username: {
+                    required: true,
+
+                },
+                Password: {
+                    required: true,
+                    strongPassword: true
+
+                }, Email: {
+                    required: false,
+                    email: true,
+                },
+                Nationality: {
+                    required: true,
+
+                },
+                DocumentType: {
+                    required: true,
+
+                },
+                Birthdate: {
+                    required: true,
+
+                },
+                Documents: {
+                    required: true,
+                    onlyDigits: true,
+                },
+                Mobile: {
+                    required: true,
+                    minlength: 9,
+                    maxlength: 9
+                },
+
+                files1: {
+                    required: true,
+                    extension: "png|jpeg|jpg|doc|docx|pdf"
+
+                },
+                files2: {
+                    required: true,
+                    extension: "png|jpeg|jpg|doc|docx|pdf"
+                },
+                files3: {
+                    required: true,
+                    extension: "png|jpeg|jpg|doc|docx|pdf"
+                },
+                files4: {
+                    required: true,
+                    extension: "png|jpeg|jpg|doc|docx|pdf"
+                },
+                files5: {
+                    required: true,
+                    extension: "png|jpeg|jpg|doc|docx|pdf"
+                },
+                files6: {
+                    required: true,
+                    extension: "png|jpeg|jpg|doc|docx|pdf"
+                },
+            },
+            messages: {
+                Honorifics: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                Name: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                Username: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                Password: {
+
+                    required: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                },
+                Email: {
+                    required: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                    email: IfArabic ? "هذه الخانة مطلوبهعنوان بريد إلكتروني غير صالح" : "Invalid email format",
+                },
+                Nationality: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                DocumentType: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                Birthdate: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                Documents: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                Mobile: {
+                    required: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                    minlength: IfArabic ? "يجب أن يكون طول الجوال 9 أرقام" : "The length of mobile must be 9 digits",
+                    maxlength: IfArabic ? "يجب أن يكون طول الجوال 9 أرقام" : "The length of mobile must be 9 digits"
+
+                },
+                files1:
+                {
+                    required: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                    extension: IfArabic ? "الرجاء تحميل وتنسيق ملف صالح" : "Please upload a valid file format."
+
+
+                },
+                files2:
+                {
+                    required: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                    extension: IfArabic ? "الرجاء تحميل وتنسيق ملف صالح" : "Please upload a valid file format."
+
+
+                },
+                files3:
+                {
+                    required: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                    extension: IfArabic ? "الرجاء تحميل وتنسيق ملف صالح" : "Please upload a valid file format."
+
+
+                },
+                files4:
+                {
+                    required: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                    extension: IfArabic ? "الرجاء تحميل وتنسيق ملف صالح" : "Please upload a valid file format."
+
+
+                },
+                files5:
+                {
+                    required: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                    extension: IfArabic ? "الرجاء تحميل وتنسيق ملف صالح" : "Please upload a valid file format."
+
+
+                },
+                files6:
+                {
+                    required: IfArabic ? "هذه الخانة مطلوبه:" : "This field is required.",
+                    extension: IfArabic ? "الرجاء تحميل وتنسيق ملف صالح" : "Please upload a valid file format."
+
+
+                },
+
+
+
+            },
+            highlight: function (element) {
+                $(element).parent().addClass('has-error');
+            },
+            unhighlight: function (element) {
+                $(element).parent().removeClass('has-error');
+            },
+            errorElement: 'span',
+            errorClass: 'validation-error-message bold mt-2 text-left',
+            errorPlacement: function (error, element) {
+                error.appendTo(element.parent());
+            },
+
+
+        });
+
+
+
+        $(document).on('change', 'select', function () {
+            $(this).valid();
+        })
+        function postRequestWithoutStringfy(url, requestData, handledata) {
+            console.log(requestData);
+            $.ajax({
+                type: 'POST',
+                url: url,
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: requestData,
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                    handledata(data);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    //swal({
+                    //    title: "Error",
+                    //    text: "Something Went Wrong!",
+                    //    icon: "error",
+                    //    dangerMode: true,
+                    //})
+                }
+            });
+        }
+        function postRequest(url, requestData, handledata) {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                url: url,
+                headers: {
+
+                },
+
+                data: JSON.stringify(requestData),
+                success: function (data, textstatus, xhr) {
+                    handledata(data);
+                },
+                error: function (xhr, textstatus, errorThrown) {
+                    swal({
+                        title: IfArabic ? "خطأ" : "Error",
+                        text: IfArabic ? "عفواً! هنالك خطأ ما." : "Ooops! Something went wrong.",
+                        icon: "error",
+                        dangerMode: true,
+                    })
+                }
+            });
+        }
+        function fillData(res, tempContainerId, fillContainerId, IsRefresh) {
+            if (res) {
+                $(fillContainerId).html('');
+                let template = $(tempContainerId).html()
+                var templateScript = Handlebars.compile(template);
+                $(fillContainerId).html(templateScript(res));
+                if (IsRefresh)
+                    $(fillContainerId).selectpicker('refresh');
+            }
+        }
+        function ArabicLanguage() {
+
+            var language = 'ar';
+            // language on user preference
+            (language == null) ? setlanguage('ar') : false;
+            // load data of selected language
+            $.ajax({
+                url: '/register/js/' + language + '.json',
+                datatype: 'json', async: true
+            }).done(function (lang) {
+
+                console.log(lang)
+                // add selected language class to the body tag
+                /* $('body').attr('id', language);*/
+                //$('.filter-option').attr('language', language);
+                //$('ul').attr('language', language);
+
+
+                // loop through message in data
+                $.each(lang, function (index, val) {
+                    (index === 'head') ? $(document).attr("title", val['title']) : false;
+                    $(index).children().each(function () {
+                        $(this).text(val[$(this).attr('key')])
+                        $(this).attr('placeholder', val[$(this).attr('inputkey')])
+                        $(this).attr('title', val[$(this).attr('titlekey')])
+
+                    })
+                })
+
+
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

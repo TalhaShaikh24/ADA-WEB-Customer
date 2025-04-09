@@ -1,0 +1,146 @@
+﻿{
+  "head": {
+    "title": "ADA - AVIATION"
+  },
+  ".navLang": {
+    "Home": "Home",
+    "About": "About",
+    "Profile": "Profile",
+    "ContactUs": "Contact Us",
+    "Login": "Login",
+    "Logout": "Logout"
+  },
+
+  ".Homelang": {
+    "Welcome": "Welcome to",
+    "Largest": "The Largest Helicopter Operator in the Middle East",
+    "searchflight": "Search Flight",
+    "ADA": "ADA"
+
+  },
+  "#hero .container #bannerTabs": {
+
+    "searchflight": "Search Flight"
+
+  },
+
+  ".FlightSearchLang": {
+    "flight": "Flights",
+    "Booking": "Flights Booking",
+    "OneWay": "OneWay",
+    "Return": "Return",
+    "FlyingFrom": "Flying From",
+    "FlyingTo": "Flying To",
+    "FromDate": "From Date",
+    "ToDate": "To Date",
+    "SelectDestination": "Select Destination",
+    "SearchNow": "Search Now",
+    "LeavingFrom": "Leaving From",
+    "GoingFrom": "Going From",
+    "DepartingOn": "DepartingOn",
+    "ArrivingOn": "Arriving On",
+    "Adults": "Adults",
+    "Infants": "Infants"
+
+  },
+
+  ".ServiceSearchLang": {
+    "Services": "Services",
+    "OurServices": "Our Services",
+    "Managebooking": "Manage booking",
+    "Check-in": "Check-in",
+    "FlightStatus": "Flight Status",
+    "Baggage": "Baggage",
+    "Cargo": "Cargo"
+  },
+  ".LoginLang": {
+    "Username": "Username",
+    "Password": "Password",
+    "Rememberme": "Remember me",
+    "Login": "Login",
+    "Signupas": "Signup as",
+    "Individual": "Individual",
+    "Family": "Family",
+    "Corporator": "Corporator"
+
+  },
+
+  ".RegisterLang , .MyProfileLang": {
+    "Registeranewuser": "Register a new user",
+    "Title": "Title",
+    "Name": "Name",
+    "Email": "Email",
+    "SelectDocumentType": "Select Document Type",
+    "SelectNationality": "Select Nationality",
+    "SelectTitle": "Select Title",
+    "Username": "Username",
+    "Password": "Password",
+    "Birthdate": "Birthdate",
+    "Nationality": "Nationality",
+    "Mobile": "Mobile",
+    "Passport": "Passport",
+    "Documents": "Documents",
+    "DocumentType": "Document Type",
+    "DocumentTypee": "Document Type",
+    "UploadUAEID": "Upload UAE ID",
+    "UploadPassport": "Upload Passport",
+    "UploadTravelID": "Upload Travel ID",
+    "UploadSecurityID": "Upload Security ID",
+    "UploadCompanyID": "Upload Company ID",
+    "UploadBirthCertificate": "Upload Birth Certificate",
+    "AreYouDelmaResident": "Are You Delma Resident?",
+    "AreYouUAEResident": "Are You UAE Resident?",
+    "AreYouGovermentResident": "Are You Goverment Entity?",
+    "Register": "Register",
+    "RegisterGroup": "Register Group",
+    "CorporateRegistration": "Corporate Registration",
+    "WelcometoAbuDhabiAviation": "Welcome to Abu Dhabi Aviation",
+    "GroupLoginInformation": "Group Login Information",
+    "OtherMembersinformation": "Other Members Information",
+    "Add": "Add",
+    "Remove": "Remove",
+    "CorporateLoginInformation": "Corporate Login Information",
+    "UpdateInformation": "Update Information",
+    "MyProfile": "My Profile",
+    "ManageMembers": "Manage Members",
+    "EditMembers": "EditMembers",
+    "Actions": "أجراءات",
+    "Save": "Save",
+    "Cancel": "Cancel"
+
+
+  },
+  ".FlightResultLang": {
+    "FlightResults": "FlightResults",
+    "Book": "Book"
+  },
+  ".FlightMembers": {
+    "FlightMembers": "Flight Members",
+    "Name": "Name",
+    "Age": "Age",
+    "Gender": "Gender",
+    "Email": "Email",
+    "Remove": "Remove"
+  },
+  ".FlightBookingLang": {
+    "Booking": "Booking",
+    "FlightBooking": "FlightBooking",
+    "ConfirmReservation": "ConfirmReservation"
+  },
+  ".BookingHistory": {
+    "bookinghistory": "Booking History",
+    "MyBookings": "My Bookings",
+    "CanceledBookings": "Canceled Bookings"
+  }
+  }
+
+
+
+
+
+
+
+
+
+
+}

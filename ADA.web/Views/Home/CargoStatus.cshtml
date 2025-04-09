@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Cargo Staus";
+    @using Microsoft.Extensions.Configuration
+    @inject IConfiguration Configuration
+}
+
+<div class="subheader normal-bg section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 CargoStatus CargoStatus">
+                <h1 key="CargoStatus" class="text-custom-white">Cargo Status</h1>
+
+            </div>
+        </div>
+    </div>
+</div>
+<section class="section-padding ">
+    <form id="cargoForm">
+        <div class="container">
+
+
+            <div class="row" style="justify-content: center; ">
+
+                <div class="col-md-4">
+                    <div class="form-group CargoStatus">
+                        <label key="Barcode/ShipperReferenceNumber" class="fs-14 text-custom-black fw-500"> Barcode/Shipper Ref Number <span class="required">*</span> </label>
+                        <input Inputkey="EnterBarcode/ShipperRefNumber" id="Barcode" type="text" name="CargoStatus" class="form-control form-control-custom" placeholder="Enter Barcode / Shipper Ref Number" />
+
+                    </div>
+                </div>
+                <div class="col-md-2 mt-2  CargoStatus">
+                    <button key="CargoStatusSearch" class="btn-second btn-small mt-4" type="button" id="CargoStatusSearch">Search</button>
+                </div>
+            </div>
+            <div class="row pt-3 mt-3" id="CargoStatusFillAppend" style="justify-content: center; margin-bottom: 40px; height: 30vh; ">
+
+
+            </div>
+        </div>
+    </form>
+</section>
+@*<section class="pt-5">
+        <div class="container">
+            <div class="row" id="CargoStatusFillAppend">
+
+
+            </div>
+        </div>
+
+    </section>*@
+
+@section scripts {
+    <script src="~/Register/jquery/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/ar.min.js" integrity="sha512-EOEeyWHiCPkh0uHPbUjyQsrQtLaG1qR+TvKVctJjmRPzYiCTQAuszMsZGM6ms5oBWZyl3KvtaRkKigSzi/vGZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous"></script>
+
+    <script src="~/Register/js/CargoStatus.js"></script>
+    <script src="~/Register/js/Languages.js"></script>
+
+}
+
+

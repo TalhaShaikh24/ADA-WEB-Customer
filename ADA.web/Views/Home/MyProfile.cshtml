@@ -1,0 +1,1074 @@
+﻿@{ViewBag.Title = "My Profile";}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" />
+
+<link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<style>
+    .textAlignRight {
+        text-align: right !important;
+    }
+    input[type="tel"] {
+        padding-left: 65px !important;
+        padding-right: 65px !important;
+    }
+    .input-group-mask {
+        position: absolute;
+        height: 40px;
+        width: 78px;
+        background: none;
+        color: #495057;
+        /*padding-left: 38px;*/
+        /*font-size: 14px !important;*/
+        /* right: -5px; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /*font-size: 15px;*/
+        border-radius: 0px 10px 10px 0px;
+        z-index: 0;
+        pointer-events: none;
+    }
+    div#datepickers-container {
+        z-index: 99999;
+    }
+
+    .btn-group {
+        background: none;
+    }
+    .extensionDoc {
+        color: grey;
+        font-size: 14px !important;
+    }
+   
+
+    .my-card {
+        position: absolute;
+        left: 40%;
+        top: -20px;
+        border-radius: 50%;
+        height: 50px;
+    }
+
+    th, td {
+        width: 12%!important;
+    }
+
+    a.btn {
+        margin-right: 0px !important;
+    }
+    .required {
+        color: red;
+    }
+    .filter-option.pull-left {
+        display: flex !important;
+        align-items: center
+    }
+    body#ar {
+        contain: size !important
+    }
+    .form-control-custom {
+        
+        padding: 5px 15px!important;
+    }
+    .has-error {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+</style>
+
+
+<div class="subheader normal-bg section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 MyProfileLang">
+                <h1 key="MyProfile" class="text-custom-white">My Profile</h1>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="section-padding  booking-form pt-5 pb-5">
+
+
+    <div class="IndividualProFileBlock" style="display:none">
+
+        <div class="modal fade" id="IndiviualModal">
+            <div class="modal-dialog modal-dialog-centered  modal-lg">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header MyProfileLang">
+                        <h3 class="modal-title MyProfileLang" style="font-weight:800">
+                        <i class="fa fa-file-alt"></i>&nbsp; 
+                        <span key="YourDocuments">Your Documents</span></h3>
+                        <button key="close" type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="row w-100" id="DocumentFilesAppend">
+
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer MyProfileLang">
+                        <button key="close" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container p-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <form id="RegisterForm" role="form">
+                        <div class="row">
+
+                            <input type="hidden" id="HdIndId" />
+
+                            <div class="col-md-4">
+                                <div class="form-group RegisterLang">
+                                    <label key="Title" class="fs-14 text-custom-black fw-500">Title <span class="required">*</span> </label>
+                                    <div class="group-form inputFields RegisterLang ">
+                                        <select Titlekey="Title" class=" RegisterLang form-control selectpicker Honorifics" id="Honorifics" name="Honorifics" title="Title">
+                                            <option key="Mr" value="Mr" name="Mr">Mr</option>
+                                            <option key="Ms" value="Ms" name="Ms">Ms</option>
+                                            <option key="Mrs" value="Mrs" name="Mrs">Mrs</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 ">
+                                <div class="form-group RegisterLang">
+                                    <label key="Name" class="fs-14 text-custom-black fw-500">Name <span class="required">*</span> </label>
+                                    <input maxlength="50" autocomplete="off" InputKey="Name" class="form-control-custom" type="text" name="Name" id="Name" placeholder="Name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group RegisterLang">
+                                    <label key="Email" class="fs-14 text-custom-black fw-500" >Email <span class="text-secondary" key="optional"> (Optional)</span> </label>
+                                    <input maxlength="60" InputKey="Email" class="form-control-custom" type="text" name="Email" id="Email" placeholder="Email" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group RegisterLang">
+                                    <label key="Username" class="fs-14 text-custom-black fw-500">Username <span class="required">*</span> </label>
+                                    <input maxlength="50" readonly="readonly" autocomplete="off" InputKey="Username" class=" form-control-custom" type="text" name="Username" id="Username" placeholder="Username" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 d-none">
+                                <div class="form-group RegisterLang">
+                                    <label key="Password" class="fs-14 text-custom-black fw-500">Password <span class="required">*</span> </label>
+                                    <input maxlength="20" autocomplete="off" InputKey="Password" class="form-control-custom" type="password" name="Password" id="Password" placeholder="Password" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <div class="form-group FlightSearchLang">
+                                    <label key="FromDate" class="fs-14 text-custom-black fw-500">Birthdate <span class="required">*</span> </label>
+                                    <div class="input-group group-form">
+                                        <input autocomplete="off" type="text"  readonly="readonly" style="padding-right: 40px !important;" name="Birthdate" id="Birthdate" class="form-control-custom " placeholder="dd-mmm-yyyy" readonly="readonly" />
+                                        <span class="input-group-append">
+                                            <i class="far fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group RegisterLang">
+                                    <label key="Nationality" class="fs-14 text-custom-black fw-500">Nationality <span class="required">*</span> </label>
+                                    <div class="group-form inputFields RegisterLang">
+                                        <select Titlekey="Nationality" data-live-search="true" id="Nationality" name="Nationality" class="selectpicker form-control" title="Nationality" data-size="10">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group RegisterLang">
+                                    <label key="Mobile" class="fs-14 text-custom-black fw-500">Mobile <span class="required">*</span> </label>
+                                    <div class="input-group group-form">
+                                        <input autocomplete="off" autofocus Inputkey="Mobile" style=" padding-left: 65px!important;" class="form-control form-control-custom"  autoClear="false" onkeypress="return isNumberKey(event)" type="tel" maxlength="9" name="Mobile" id="Mobile" placeholder="Mobile" required>
+                                        <span class="input-group-mask">(+971) -</span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group RegisterLang">
+                                    <label key="Passport" class="fs-14 text-custom-black fw-500">ID <span class="required">*</span> </label>
+                                    <input autocomplete="off" Inputkey="Passport" class="form-control form-control-custom" type="text" maxlength="18" name="Documents" id="Documents" placeholder="ID" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group RegisterLang">
+                                    <label key="DocumentType" class="fs-14 text-custom-black fw-500">Document Type <span class="required">*</span> </label>
+                                    <div class="group-form inputFields RegisterLang">
+                                        <select Titlekey="DocumentTypee" multiple id="DocumentType" name="DocumentType" class=" RegisterLang selectpicker form-control DocumentType" title="Document Type">
+                                            <option key="UAEID" value="U">UAE ID</option>
+                                            <option key="Passport" value="P">Passport</option>
+                                            <option key="TravelID" value="T">Travel ID</option>
+                                            <option key="SecurityID" value="S">Security ID</option>
+                                            <option key="CompanyID" value="C">Company ID</option>
+                                            <option key="BirthCertificate" value="B">Birth Certificate</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="group-form RegisterLang">
+                                        <button key="SeeYourDocuments" type="button" class="btn-first btn-small mt-4" style=" display:none; margin-top: 28px !important;" id="SeeDocuments">See Your Documents</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row wrapper_Block p-2" style=" width: 100%;">
+                                <div class="col-md-6" id="FlieUAE" style="display: none; margin-right: 60px;">
+                                    <div class="form-group RegisterLang">
+                                        <label key="UploadUAEID" class="fs-14 text-custom-black fw-500">UAE ID <span class="required">*</span>  <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span> </label>
+                                        <div>
+                                            <input class="form-control form-control-custom " style="color: transparent;" onchange="document.getElementById('blah1').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))" type="file" name="files1" id="files1">
+                                            <label id="fileLabel" style=" position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                            <img id="blah1" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6" id="FliePasport" style="display: none; margin-right: 60px;">
+                                    <div class="form-group RegisterLang">
+                                        <label key="UploadPassport" class="fs-14 text-custom-black fw-500">Passport  <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+
+                                        <div>
+                                            <label id="fileLabel2" style="position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                            <input class="form-control form-control-custom " style="color: transparent;" onchange="document.getElementById('blah2').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))" type="file" name="files2" id="files2">
+                                            <img id="blah2" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6" id="FlieTravelID" style="display: none; margin-right: 60px;">
+                                    <div class="form-group RegisterLang">
+                                        <label key="UploadTravelID" class="fs-14 text-custom-black fw-500">Travel ID <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                        <div>
+                                            <label id="fileLabel3" style="position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                            <input class="form-control form-control-custom " style="color: transparent;" type="file" name="files3" id="files3" onchange="document.getElementById('blah3').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))">
+                                            <img id="blah3" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" id="FlieSecurityID" style="display: none; margin-right: 60px;">
+                                    <div class="form-group RegisterLang">
+                                        <label key="UploadSecurityID" class="fs-14 text-custom-black fw-500">Security ID <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                        <div>
+                                            <label id="fileLabel4" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; ">Choose file</label>
+                                            <input class="form-control form-control-custom " style="color: transparent;" type="file" name="files4" id="files4" onchange="document.getElementById('blah4').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))">
+                                            <img id="blah4" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" id="FlieCompanyID" style="display: none; margin-right: 60px;">
+                                    <div class="form-group RegisterLang">
+                                        <label key="UploadCompanyID" class="fs-14 text-custom-black fw-500">Company ID <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                        <div>
+                                            <label id="fileLabel5" style="position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                            <input class="form-control form-control-custom " style="color: transparent;" type="file" name="files5" id="files5" onchange="document.getElementById('blah5').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))">
+                                            <img id="blah5" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" id="FlieBirthCertificate" style="display: none; margin-right: 60px;">
+                                    <div class="form-group MyProfileLang">
+                                        <label key="UploadBirthCertificate" class="fs-14 text-custom-black fw-500">Birth Certificate  <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                        <div>
+                                            <label id="fileLabel6" style="position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                            <input class="form-control form-control-custom " style="color: transparent;" type="file" name="files6" id="files6" onchange="document.getElementById('blah6').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))">
+                                            <img id="blah6" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="width: 100%;">
+                                <div class="col-md-12 pl-3 mt-2">
+                                    
+                                    <div class="form-group">
+                                        <label class="custom-checkbox MyProfileLang" style=" width: fit-content; left: 2%; right: 2%;">
+                                            <input type="checkbox" name="ActiveDelmaIsland" id="ActiveDelmaIsland" value="">
+                                            <span class="checkmark"></span>
+                                            <p key="AreYouUAEResident"> Are You UAE Resident?</p>
+
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group text-right mb-0 RegisterLang">
+                                    <button key="UpdateInformation"  type="button" id="registerUser" class="btn-first btn-small ">Register</button>
+                                    <button key="UpdateInformation" type="button" id="UpdateUser" style="display:none;" class="btn-first btn-small ">Update Information</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+            <div class="modal fade" id="GroupModal">
+                <div class="modal-dialog modal-dialog-centered  modal-lg">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header MyProfileLang">
+                            <h3 class="modal-title MyProfileLang" style="font-weight:800">
+                            <i class="fa fa-file-alt"></i>&nbsp; 
+                            <span key="YourDocuments">Your Documents</span> </h3>
+                            <button key="close" type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="row w-100" id="GroupDocumentFilesAppend">
+
+                            </div>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer MyProfileLang">
+                            <button key="close" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="CorporateModal">
+                <div class="modal-dialog modal-dialog-centered  modal-lg">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header MyProfileLang">
+                            <h3 class="modal-title MyProfileLang" style="font-weight:800">
+                            <i class="fa fa-file-alt"></i>&nbsp; 
+                            <span key="YourDocuments">Your Documents</span></h3>
+                            <button key="close" type="button" class="close" data-dismiss="modal">close&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="row w-100" id="CorporateDocumentFilesAppend">
+
+                            </div>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer MyProfileLang">
+                            <button key="close" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row gutters-sm" style="display:none;" id="GroupMembers">
+
+                <div class="col-md-12 mb-3">
+                    <div class="table-responsive">
+                        <div class="table-wrapper">
+                            <div class="table-title">
+                                <div class="row align-items-center">
+                                    <div class="col-sm-6 MyProfileLang">
+                                        <h2 key="ManageMembers" class="text-white">Manage Members </h2>
+                                    </div>
+                                    <div class="col-sm-6   justify-content-end">
+                                        <a href="#addEmployeeModal" id="btnAddMember" class="btn-first btn-small d-flex MyProfileLang" style="background-color: #b68150;border: none;" data-toggle="modal">
+                                            <i class="material-icons" style="position: relative; right:10px">&#xE147;</i>
+                                            <span key="AddNewMember" class=" ml-1 mr-4"> Add new member</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <table id="membersTable" class="table mt-5 table-striped table-hover" style="width:100%!important">
+                                <thead>
+                                    <tr class="MyProfileLang">
+                                        <th key="Name">Name</th>
+                                        <th key="Email">Email</th>
+                                        <th key="Nationality">Nationality</th>
+                                        <th key="Mobile">Phone</th>
+                                        <th key="Role">Role</th>
+                                        <th key="Documents">Documents</th>
+                                        <th key="Status">Status</th>
+                                        <th key="Actions">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="addEmployeeModal" class="modal fade">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <form id="AddNewMemberForm">
+                                <div class="modal-header MyProfileLang">
+                                    <h4 key="AddNewMember" class="modal-title">Add Member</h4>
+                                    <button key="close" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+
+                                <div class=" modal-body">
+                                    <div class="row">
+                                        <div class="col-md-4 ">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="Title" class="fs-14 text-custom-black fw-500">Title</label>
+                                                <div class="group-form inputFields MyProfileLang">
+                                                    <select id="NewMemberTitle" name="NewMemberTitle" Titlekey="Title" class="selectpicker MyProfileLang form-control form-control-custom">
+                                                        <option key="Title" value="" disabled selected hidden>Title...</option>
+                                                        <option key="Mr" value="Mr" name="Mr">Mr</option>
+                                                        <option key="Ms" value="Ms" name="Ms">Ms</option>
+                                                        <option key="Mrs" value="Mrs" name="Mrs">Mrs</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="fs-14 text-custom-black fw-500" key="Name">Name</label>
+                                                <input maxlength="50" autocomplete="off" class="form-control form-control-custom" type="text" name="NewMemberName" id="NewMemberName" placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="fs-14 text-custom-black fw-500" key="Email">Email</label>
+                                                <input maxlength="60" autocomplete="off" class="form-control form-control-custom" type="text" name="NewMemberEmail" id="NewMemberEmail" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="Mobile" class="fs-14 text-custom-black fw-500">Mobile</label>
+                                                <div class="input-group group-form">
+                                                    <input autocomplete="off" class="form-control form-control-custom" maxlength="9" type="tel" onkeypress="return isNumberKey(event)" name="NewMemberMobile" id="NewMemberMobile" placeholder="XXXXXXXXXX">
+                                                    <span class="input-group-mask">(+971) -</span>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="Nationality" class="fs-14 text-custom-black fw-500">Nationality</label>
+                                                <div class="group-form inputFields MyProfileLang">
+                                                    <select title="Select Nationality" id="NewMemberNationality" name="NewMemberNationality" data-size="10" data-live-search="true" class="  selectpicker form-control form-control-custom">
+                                                        <option key="Nationality" value="" disabled selected hidden>Nationality...</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="fs-14 text-custom-black fw-500" key="Birthdate">Birthdate</label>
+                                                <div class="input-group group-form">
+                                                    <input autocomplete="off" type="text"  readonly="readonly" name="NewMemberBirthdate" id="NewMemberBirthdate" class="form-control form-control-custom " placeholder="dd-mmm-yyyy"/>
+                                                    <span class="input-group-append">
+                                                        <i class="far fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="fs-14 text-custom-black fw-500" key="Passport">ID</label>
+                                                <input autocomplete="off" class="form-control form-control-custom" type="text" maxlength="18" name="NewMemberDocuments" id="NewMemberDocuments" placeholder="ID">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="DocumentTypee" class="fs-14 text-custom-black fw-500">Document Type</label>
+                                                <div class="group-form inputFields MyProfileLang">
+                                                    <select Titlekey="DocumentTypee" multiple id="NewMemberDocumentType" name="NewMemberDocumentType" class="selectpicker form-control form-control-custom NewMemberDocumentType">
+                                                        <option value="U">UAE ID</option>
+                                                        <option value="P">Passport</option>
+                                                        <option value="T">Travel ID</option>
+                                                        <option value="S">Security ID</option>
+                                                        <option value="C">Company ID</option>
+                                                        <option value="B">Birth Certificate</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" wrapper_Block2" style="width:100%">
+                                            <div class="row mx-2 ">
+                                                <div class="col-md-4" id="NewFlieUAE" style="display: none;">
+                                                    <div class="form-group MyProfileLang">
+                                                        <label key="UploadUAEID" class="fs-14 text-custom-black fw-500">Upload UAE ID </label>
+                                                        <input class="form-control form-control-custom pt-1" type="file" name="NewMemberfiles1" id="NewMemberfiles1">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4" id="NewFliePasport" style="display: none;">
+                                                    <div class="form-group MyProfileLang">
+                                                        <label key="UploadPassport" class="fs-14 text-custom-black fw-500">Upload Passport </label>
+                                                        <input class="form-control form-control-custom pt-1" type="file" name="NewMemberfiles2" id="NewMemberfiles2">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4" id="NewFlieTravelID" style="display: none;">
+                                                    <div class="form-group MyProfileLang">
+                                                        <label key="UploadTravelID" class="fs-14 text-custom-black fw-500">Upload Travel ID </label>
+                                                        <input class="form-control form-control-custom pt-1" type="file" name="NewMemberfiles3" id="NewMemberfiles3">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4" id="NewFlieSecurityID" style="display: none;">
+                                                    <div class="form-group MyProfileLang">
+                                                        <label key="UploadSecurityID" class="fs-14 text-custom-black fw-500">Upload Security ID </label>
+                                                        <input class="form-control form-control-custom pt-1" type="file" name="NewMemberfiles4" id="NewMemberfiles4">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4" id="NewFlieCompanyID" style="display: none;">
+                                                    <div class="form-group MyProfileLang">
+                                                        <label key="UploadCompanyID" class="fs-14 text-custom-black fw-500">Upload Company ID </label>
+                                                        <input class="form-control form-control-custom pt-1" type="file" name="NewMemberfiles5" id="NewMemberfiles5">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4" id="NewFlieBirthCertificate" style="display: none;">
+                                                    <div class="form-group MyProfileLang">
+                                                        <label key="UploadBirthCertificate" class="fs-14 text-custom-black fw-500">Upload Birth Certificate  </label>
+                                                        <input class="form-control form-control-custom pt-1" type="file" name="NewMemberfiles6" id="NewMemberfiles6">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 mt-2">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="custom-checkbox MyProfileLang">
+                                                    <input type="checkbox" name="NewMemberActiveDelmaIsland" id="NewMemberActiveDelmaIsland">
+                                                    <span class="checkmark"></span>
+                                                    <p key="AreYouDelmaResident">Are You Delma Resident?</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mt-2 d-none">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="custom-checkbox">
+                                                    <input type="checkbox" name="NewMemberActiveUAEID" id="NewMemberActiveUAEID">
+                                                    <span class="checkmark"></span>
+                                                    <p key="AreYouUAEResident">Are You UAE Resident?</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mt-2 d-none">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="custom-checkbox">
+                                                    <input type="checkbox" name="NewMemberIsHead" id="NewMemberIsHead">
+                                                    <span class="checkmark"></span>
+                                                    Are You Head?
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="form-group text-right mb-0 MyProfileLang">
+                                                <button key="Register" type="button" class="btn-first btn-small" id="RegisterOther">Register</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="UpdateGroupModal">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header MyProfileLang">
+                                <h3 key="UpdateGroupInformation" class="modal-title" style="font-weight:800">Update Group Information</h3>
+                                <button key="close" type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <form id="ModalGroupUpdateForm">
+                                <input type="hidden" id="HdUpdateGroupId" />
+                                <!-- Modal body -->
+                                <div class="modal-body">
+
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4 ">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="Title" class="fs-14 text-custom-black fw-500">Title</label><span class="required"> *</span>
+                                                <div class="group-form inputFields MyProfileLang" id="modalOtherMembersGenderBlock">
+                                                             
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="fs-14 text-custom-black fw-500" key="Name">Name</label><span class="required"> *</span>
+                                                <input maxlength="50" autocomplete="off" class="form-control form-control-custom modalOtherMembersName" type="text" name="modalOtherMembersName" id="modalOtherMembersName">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="fs-14 text-custom-black fw-500" key="Email">Email</label><span class="text-secondary" key="optional"> (Optional)</span>
+                                                <input maxlength="60" autocomplete="off" class="form-control form-control-custom modalOtherMembersEmail" type="email" name="modalOtherMembersEmail" id="modalOtherMembersEmail">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="Nationality" class="fs-14 text-custom-black fw-500">Nationality</label><span class="required"> *</span>
+                                                <div class="group-form inputFields MyProfileLang">
+                                                    <select  id="modalOtherMembersNationality" name="modalOtherMembersNationality" class="  selectpicker form-control form-control-custom modalOtherMembersNationality">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="fs-14 text-custom-black fw-500" key="Birthdate">Birthdate</label><span class="required"> *</span>
+                                                <div class="input-group group-form">
+                                                    <input autocomplete="off" type="text"  readonly="readonly" name="modalOtherMembersNationalityBirthdate" id="modalOtherMembersNationalityBirthdate" class="form-control form-control-custom modalOtherMembersNationalityBirthdate " placeholder="dd-mmm-yyyy" />
+                                                    <span class="input-group-append">
+                                                        <i class="far fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="Mobile" class="fs-14 text-custom-black fw-500">Mobile</label><span class="required"> *</span>
+                                                 <div class="input-group group-form">
+                                                     <input autocomplete="off" class="form-control form-control-custom modalOtherMembersNationalityMobile " maxlength="9" type="tel" onkeypress="return isNumberKey(event)" name="modalOtherMembersNationalityMobile" id="modalOtherMembersNationalityMobile" >
+                                                     <span class="input-group-mask">(+971) -</span>
+                                                 </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="fs-14 text-custom-black fw-500" key="Passport">ID</label><span class="required"> *</span>
+                                                <input autocomplete="off" class="form-control form-control-custom modalOtherMembersNationalityDocuments" maxlength="18" type="text" name="modalOtherMembersNationalityDocuments" id="modalOtherMembersNationalityDocument">
+                                            </div>
+                                        </div>
+                                        <div  class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="DocumentTypee" class="fs-14 text-custom-black fw-500">Document Type</label><span class="required"> *</span>
+                                                <div class="group-form inputFields MyProfileLang">
+                                                    <select Titlekey="DocumentTypee"  id="modalOtherMembersNationalityDocumentType" multiple name="modalOtherMembersNationalityDocumentType" class="selectpicker form-control form-control-custom modalOtherMembersNationalityDocumentType" data-live-search="true">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-4 mt-2">
+                                                    <div class="form-group MyProfileLang">
+                                                        <label class="custom-checkbox MyProfileLang">
+                                                            <input type="checkbox" class="modalRGActiveDelmaIsland" name="modalRGActiveDelmaIsland" id="modalRGActiveDelmaIsland">
+                                                            <span class="checkmark"></span>
+                                                            <p key="AreYouDelmaResident">Are You Delma Resident?</p>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4 mt-2 d-none">
+                                                    <div class="form-group MyProfileLang">
+                                                        <label class="custom-checkbox MyProfileLang">
+                                                            <input type="checkbox" class="modalRGActiveUAEID" name="modalRGActiveUAEID" id="modalRGActiveUAEID">
+                                                            <span class="checkmark"></span>
+                                                            <p key="AreYouUAEResident">Are You UAE Resident?</p>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mt-2">
+                                                    <div class="form-group MyProfileLang">
+                                                        <label class="custom-checkbox MyProfileLang">
+                                                            <input type="checkbox" class="modalIsHead" disabled>
+                                                            <span class="checkmark"></span>
+                                                            <p key="AreYouGroupHead">Are You Group Head?</p>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row  ModalGroup_wrapper_Block " style=" width: 100%;">
+                                        <div class="col-md-6" id="ModalGroupFlieUAE" style="display: none; margin-right: 60px;">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="UAEID" class="MyProfileLang fs-14 text-custom-black fw-500 ">UAE ID <span class="required">*</span>  <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span> </label>
+                                                <div>
+                                                    <input class="form-control form-control-custom pt-1" style="color: transparent;" onchange="document.getElementById('ModalGroupblah1').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))" type="file" name="ModalGroupfiles1" id="ModalGroupfiles1">
+                                                    <label id="ModalGroupfileLabel" style=" position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                                    <img id="ModalGroupblah1" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" id="ModalGroupFliePasport" style="display: none; margin-right: 60px;">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="Passport" class="MyProfileLang fs-14 text-custom-black fw-500">Passport  <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+
+                                                <div>
+                                                    <label id="ModalGroupfileLabel2" style="position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                                    <input class="form-control form-control-custom pt-1" style="color: transparent;" onchange="document.getElementById('ModalGroupblah2').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAk1BMVEUqVpb////3+PoARI7R1+QkUpQUS5Hl6/MbTpJceaq0vtMMSI+SosEeUJMARo78/P1ngK1Rb6N/k7ilssvb4OovWZebqsbv8/g3YZ3i5+8AQYzr8PZgfazQ2ejK0eA7YZyInsFEaqJzjLadq8elt9TBzuEAOol8l8C3xdtqiLaRp8lPbqN1kLikttO0xNx0i7OHmbwiLw1dAAAJEUlEQVR4nO2d63qqOhCGFQ3iISIVChRRomUreGjv/+o2CAkBQSsLVoNrvl99RELeJpmZJGPoSa+u3uDV1QOBQCAQCAQCgUAgEAgEAoFAIBCoZSEsz+XfrkRLitk+rNXet9cvhogQ7hnGZhN4n7bajzWc/nadmhLCGBmb43jhnddOP9MrEEbtpvSs4+Jtdj64PNwrEEZsco8Eb7vJwR1JRbiOE0a2RDbGp/CwHtpmKVt3CSO2qWIF3kTXbfMeXAcJ4045n5L92TVNSVIfwXWJECHUi7wA2Yb+jSnpOmFsJw2irbbhxX2STXjCyAnIFhlv32af/qgWnMCEERsm2tbbHXz3oSnpGGHUKaeIrLylv65ycN0lRJGdNLT92Y+dQBNsAhHGDm5AgvBgO+YPfUBXCNFVxnH/Wc9Oik4YzQRWp/Of2EnBCdHRb8SUCEw4brn1OEK5ASlIYEJ50oCWKywu4aCRktzxk634NwmbcUGzJxuxg4QKEAJhKwLCJwSEQNiSgPAJASEQtiQgfEIiEzZTlMCESKsjsuwOYbqo96Tk9w4R1pIChEAIhE0Szuvov1l3COe2M6qh4g6YwISv7/H/gagNCH8mIATClgSET+jXCNXkkBjTlPSSLJUX8IeH8LQPjoTIgw+i316OCad6LRWTBFslVB1bt4fD4dr3ixSGjDG6Ji/ifUni4jUundaJSz/+ZlwqXU7BakWsjTEdnAqDKnusXFx2YIS11MrcQvf9w3K5nHkzP/e5OZYxQultecIRt/V8EJ/QI2RjGAZWcJj73LG4B+cJLxkhWYtPGNLq4q/Kak7zAzFkCRI4KOv2ghEeWG0Xuc/P3E975HPu0okRKl6Z26u/1jZtg3CUXbT5z7fcYMOn3C3HLMllVwKYrJcu6mg1aYGwv6FXSc7UWPx9hL9iEnZhU2ZohPP4K9oi1oXHyI0lhb/BZf8TpJWmcIoWtXmsO/Jdzs0Ryryp+TRYedtSDtEIfWpSMB9QnHNFK3zzvmefe6XVEo3QpGcQ4i8uil7lUubQnrvhjTW6cb4pTUTCPu10OedWuFHLrkgLRrgpz6QWjpBmOKJjVmGnkBNIsgrbLCMSHcsT/IUjDGkpVuYuLoW8Tq61fOYs0Kq8WsIRMlODMn8bFgiNzwyeeUoUlpQmIqFNCbmp0KqYm5tZzV1WnF9SWl88j983aaPgGc3kl0iBELGwXPXYQ3HFbDMmxG+1VIyRGiKkDYYDGpmysMVgd9K5vJk5C6viH3+NvHEdzdvZXZNoVIPGNHS5pGQooG1JqKnJkstRcI+wltraPzzQgWgN0088+n0W2rCgdc1MqVJhaAQk1GkxCp2xp1MnvNfn9F4atPosKp2XLLOJSkibRU4H+ijtifJFZUHrd2r+J5mhqQAUkHBER5sSJsaUOnXZ7lOjihfJreo7fSYfyZUQytMaams10aSmBm+TMIzOjyyHTfXpVNA5sXWd8olFSiiva8kuFNXUeukk7YvomFx/TyhQYPYvtJtuEvdus1hALp3fU0KhPH7UK9k0//o/NNN2ijstMzVKEtINmSkdFP/feUKRorbIx9FqJ+ZRp4YmajaTza286xhds2F4rDyIQEBCe5E2YtLzqMtDerz0TedWyeyR+U68r/yxpoCELKpRdnHFJrSVdD7g0eL2ldhUS/6sZBCQsL+jGEHUMOouKRaf4n7IGs2IwwFzS4esMiwvSlDCCf2CJmUOQXmP++GQeodrD3Y0ZpSqIhoxCdm8XYmg9JQisZ42uxQD2xSwfMdCXEKderl51DGHtJWuHnBEL6E4HNBpQIa96kMYBPSHfZVGKnFXTEdeOpeSWJhGIgf4ydYDKv19mrlX7/UxxZZvbg+YGdOQmcvE0ETAzAPqfXVPR6VVtnHIEfbmdd4e02L2JY1E8anvpN1SSZ+2pj5/uu6rrMuOqw2NgHOLSD5dtrD6I/pnui7lHtnMQ5XYks7pztFKQhLa1AvIbD5MN9tG1AWilSQxQ1OsivCEbPlwPvJzhiayQuwplsR2pIziVqb4hHTnWvZTo4O/qF1bUh84V9myDalYKv1DwjZ/UUK3zJSQtiYzawc6+GSfpjWgVeXUiRIadYSLu+YNEvps/TD9braO79IxikM20Xi7Ayikx48CTuoTqCXN+iGLtlHAtiyqFhIzQsGitkiFdXykZVHZN3XzbH6f2/LvCmFQIOSya3Y3BZG7h0wJShgWyuJW0g6bm3LuVktQwnXBxGcbhn39WNyJ2naRUM2/NNHg486b3cTyDAXBCfv5nfvcztmpSHj/rDdRCXNHMuVH2nuhHON+9UUlzJkazCfQcPtNSTHH+9US0+NHGLypyU/hzTxhHv9WMaGyrKXiAl6jhA5vagb56V8+HJDvhd0pYU+po0GrmexSLt8yf22bIxw8OAlUzNlTRMhFNUWXng8HUHkBwhOqHEZxb1Dn61yZoSA6Yd//wEqSbh0vOuXF17kyQ0F4Qud79r3dbseaRoziSOPH6PzR2a6Jpalz2GW7luYq03F0113fHHMaDGRFSX4JhHqPjhwW1Vvcle5P3t+9IAgIIeOfEIro8R9IlaSogR070qOATNSorTkB4RMCQiBsSUD4hIDwNwmbKUpgQjjNrFydOicKCIEQCH+fULSMocYJ55JaS90hfH2P/w9EbUD4MwEhELYkIHxCQAiELQkInxAQAmFLAsInJDJhIyWJ/P7D13+H5W+9h7T8BLlWCH9JBtG24fner0G6TphumPTINvTv/Pis04QpJ1bkgaLtz+7IMRt/CbIIhIni98bLVuBNhrrtvNq71TkhLCvW+BQefPfmsOnXILwq7rY9stq+Lw/u6E/DESEJE0WcyNIWX97uUHbW+gsQXoUQRsbmqC28uq+ZF50wVXyWt2EYq/3lYaZeRwlTRXZo+kECz7dN8+Y8gJcgTISxPO+Ng7P/I7fSRcKrEFKmyjFyn/5QH90LEzpLeBVK3Od2tpz4boX77DZhoqg5sUHGX9+zi3sbx78CYaLYr1hEW0TxkKu+JGGiCDNyKxstskPOaxKmQkiWB/h4+nTVtfz4651V7D5l6/H3QCAQCAQCgUAgEAgEAoFAIBAIBAL9M/of7UsnKTAofvIAAAAASUVORK5CYII=':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))" type="file" name="ModalGroupfiles2" id="ModalGroupfiles2">
+                                                    <img id="ModalGroupblah2" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" id="ModalGroupFlieTravelID" style="display: none; margin-right: 60px;">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="TravelID" class="MyProfileLang fs-14 text-custom-black fw-500">Travel ID <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                                <div>
+                                                    <label id="ModalGroupfileLabel3" style="position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                                    <input class="form-control form-control-custom pt-1" style="color: transparent;" type="file" name="ModalGroupfiles3" id="ModalGroupfiles3" onchange="document.getElementById('ModalGroupblah3').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))">
+                                                    <img id="ModalGroupblah3" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" id="ModalGroupFlieSecurityID" style="display: none; margin-right: 60px;">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="SecurityID" class="MyProfileLang fs-14 text-custom-black fw-500">Security ID <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                                <div>
+                                                    <label id="ModalGroupfileLabel4" style="position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                                    <input class="form-control form-control-custom pt-1" style="color: transparent;" type="file" name="ModalGroupfiles4" id="ModalGroupfiles4" onchange="document.getElementById('ModalGroupblah4').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))">
+                                                    <img id="ModalGroupblah4" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" id="ModalGroupFlieCompanyID" style="display: none; margin-right: 60px;">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="CompanyID" class=" MyProfileLang fs-14 text-custom-black fw-500">Company ID <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                                <div>
+                                                    <label id="ModalGroupfileLabel5" style="position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                                    <input class="form-control form-control-custom pt-1" style="color: transparent;" type="file" name="ModalGroupfiles5" id="ModalGroupfiles5" onchange="document.getElementById('ModalGroupblah5').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))">
+                                                    <img id="ModalGroupblah5" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" id="ModalGroupFlieBirthCertificate" style="display: none; margin-right: 60px;">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="BirthCertificate" class="MyProfileLang fs-14 text-custom-black fw-500">Birth Certificate  <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                                <div>
+                                                    <label id="ModalGroupfileLabel6" style="position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                                    <input class="form-control form-control-custom pt-1" style="color: transparent;" type="file" name="ModalGroupfiles6" id="ModalGroupfiles6" onchange="document.getElementById('ModalGroupblah6').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))">
+                                                    <img id="ModalGroupblah6" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                 <!-- Modal footer -->
+                                     <div class="modal-footer MyProfileLang">
+                                         <button key="Update" type="button" id="GroupUpdateButton" class="btn btn-info">Update</button>
+                                         <button key="close" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                     </div>
+                                </div>
+                                      
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="UpdateCorporateModal">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header MyProfileLang">
+                                <h3 key="UpdateCorporateInformation" class="modal-title" style="font-weight:800">Update Corporate Information</h3>
+                                <button key="close" type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <form id="ModalCorporateUpdateForm">
+                                <input type="hidden" id="HdUpdateCorporateId" />
+                                <!-- Modal body -->
+                                <div class="modal-body">
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang" id="CorporatemodalOtherMembersGenderBlock">
+                                               
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="fs-14 text-custom-black fw-500" key="Name">Name</label><span class="required"> *</span>
+                                                <input maxlength="50" autocomplete="off" class="form-control form-control-custom CorporatemodalOtherMembersName" type="text" name="CorporatemodalOtherMembersName" id="CorporatemodalOtherMembersName">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang RegisterLangssss">
+                                                <label class="fs-14 text-custom-black fw-500" key="Email">Email</label><span class="text-secondary" key="optional"> (Optional)</span>
+                                                <input maxlength="50" autocomplete="off" class="form-control form-control-custom CorporatemodalOtherMembersEmail" type="email" name="CorporatemodalOtherMembersEmail" id="CorporatemodalOtherMembersEmail">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="fs-14 text-custom-black fw-500" key="Nationality">Nationality</label><span class="required"> *</span>
+                                                <select Titlekey="SelectNationality" id="CorporatemodalOtherMembersNationality" class="form-control form-control-custom selectpicker CorporatemodalOtherMembersNationality" name="CorporatemodalOtherMembersNationality" data-live-search="true" data-size="5" data-show-subtext="true" title="Select Nationality">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="fs-14 text-custom-black fw-500" key="Birthdate">Birthdate</label><span class="required"> *</span>
+                                                <div class="input-group group-form">
+                                                    <input autocomplete="off" type="text"  readonly="readonly" style="padding-right: 25px !important;" name="CorporatemodalOtherMembersNationalityBirthdate" id="CorporatemodalOtherMembersNationalityBirthdate" class="form-control form-control-custom CorporatemodalOtherMembersNationalityBirthdate " placeholder="dd-mmm-yyyy" />
+                                                    <span class="input-group-append">
+                                                        <i class="far fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="Mobile" class="fs-14 text-custom-black fw-500">Mobile</label><span class="required"> *</span>
+                                                <div class="input-group group-form">
+                                                    <input autocomplete="off" class="form-control form-control-custom CorporatemodalOtherMembersNationalityMobile " maxlength="9" type="tel" onkeypress="return isNumberKey(event)" name="CorporatemodalOtherMembersNationalityMobile" id="CorporatemodalOtherMembersNationalityMobile" >
+                                                    <span class="input-group-mask">(+971) -</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                   
+
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="fs-14 text-custom-black fw-500" key="Passport">ID</label><span class="required"> *</span>
+                                                <input autocomplete="off" class="form-control form-control-custom CorporatemodalOtherMembersNationalityDocument" maxlength="18" type="text" name="CorporatemodalOtherMembersNationalityDocument" id="CorporatemodalOtherMembersNationalityDocument">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 MyProfileLang">
+                                            <label key="DocumentType" class="fs-14 text-custom-black fw-500">Document Type</label>
+                                            <span class="required"> *</span>
+                                            <select id="CorporatemodalOtherMembersNationalityDocumentType" class="form-control selectpicker CorporatemodalOtherMembersNationalityDocumentType" name="CorporatemodalOtherMembersNationalityDocumentType" data-show-subtext="true" multiple data-live-search="true" title="Select DocumentType">
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12 mt-2" style="position: relative; top: 30px;">
+                                            <div class="form-group MyProfileLang">
+                                                <label class="custom-checkbox MyProfileLang" style=" width: fit-content; ">
+                                                    <input class="CorporatemodalRGActiveDelmaIsland" type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                    <p key="AreYouDelmaResident">Are You Delma Resident?</p>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 d-flex" style=" justify-content: flex-start; align-items: center; padding-top: 30px; padding-left: 20px;">
+
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-12 mt-2 d-none">
+                                                    <div class="form-group MyProfileLang">
+                                                        <label class="custom-checkbox MyProfileLang" style=" width: fit-content; ">
+                                                            <input class="CorporatemodalRGActiveDelmaIsland" type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                            <p key="AreYouDelmaResident">Are You Delma Resident?</p>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12 mt-2 d-none GGovermentEntity">
+                                                    <div class="form-group MyProfileLang">
+                                                        <label class="custom-checkbox MyProfileLang" style=" width: fit-content; ">
+                                                            <input class="CorporatemodalRGActiveUAEID" type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                            <p key="AreYouUAEResident">Are You UAE Resident?</p>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12 mt-2 d-none">
+                                                    <div class="form-group MyProfileLang">
+                                                        <label class="custom-checkbox MyProfileLang" style=" width: fit-content; ">
+                                                            <input class="CorporateModalGovEntity" id="CorporateModalGovEntity" type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                            <p key="AreYouGovermentEntity"> Are You Goverment Entity?</p>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12 mt-2 d-none">
+                                                    <div class="form-group MyProfileLang">
+                                                        <label class="custom-checkbox MyProfileLang" style=" width: fit-content; ">
+                                                            <input class="CorporatemodalIsHead" disabled type="checkbox" name="CorporatemodalIsHead">
+                                                            <span class="checkmark"></span>
+                                                            <p key="AreYouGroupHead"> Are You Group Head?</p>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row  CorporateModalGroup_wrapper_Block" style=" width: 100%;">
+                                        <div class="col-md-6" id="CorporateModalGroupFlieUAE" style="display: none; margin-right: 60px;">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="UAEID" class="fs-14 text-custom-black fw-500">UAE ID <span class="required">*</span>  <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span> </label>
+                                                <div>
+                                                    <input class="form-control form-control-custom pt-1" style="color: transparent;" onchange="document.getElementById('CorporateModalGroupblah1').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))" type="file" name="CorporateModalGroupfiles1" id="CorporateModalGroupfiles1">
+                                                    <label id="CorporateModalGroupfileLabel" style=" position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                                    <img id="CorporateModalGroupblah1" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" id="CorporateModalGroupFliePasport" style="display: none; margin-right: 60px;">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="Passport" class="fs-14 text-custom-black fw-500">Passport  <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+
+                                                <div>
+                                                    <label id="CorporateModalGroupfileLabel2" style="position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                                    <input class="form-control form-control-custom pt-1" style="color: transparent;" onchange="document.getElementById('CorporateModalGroupblah2').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))" type="file" name="CorporateModalGroupfiles2" id="CorporateModalGroupfiles2">
+                                                    <img id="CorporateModalGroupblah2" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" id="CorporateModalGroupFlieTravelID" style="display: none; margin-right: 60px;">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="TravelID" class="fs-14 text-custom-black fw-500">Travel ID <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                                <div>
+                                                    <label id="CorporateModalGroupfileLabel3" style="position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                                    <input class="form-control form-control-custom pt-1" style="color: transparent;" type="file" name="CorporateModalGroupfiles3" id="CorporateModalGroupfiles3" onchange="document.getElementById('CorporateModalGroupblah3').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))">
+                                                    <img id="CorporateModalGroupblah3" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" id="CorporateModalGroupFlieSecurityID" style="display: none; margin-right: 60px;">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="SecurityID" class="fs-14 text-custom-black fw-500">Security ID <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                                <div>
+                                                    <label id="CorporateModalGroupfileLabel4" style="position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                                    <input class="form-control form-control-custom pt-1" style="color: transparent;" type="file" name="CorporateModalGroupfiles4" id="CorporateModalGroupfiles4" onchange="document.getElementById('CorporateModalGroupblah4').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))">
+                                                    <img id="CorporateModalGroupblah4" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" id="CorporateModalGroupFlieCompanyID" style="display: none; margin-right: 60px;">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="CompanyID" class="fs-14 text-custom-black fw-500">Company ID <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                                <div>
+                                                    <label id="CorporateModalGroupfileLabel5" style="position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Choose file</label>
+                                                    <input class="form-control form-control-custom pt-1" style="color: transparent;" type="file" name="CorporateModalGroupfiles5" id="CorporateModalGroupfiles5" onchange="document.getElementById('CorporateModalGroupblah5').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))">
+                                                    <img id="CorporateModalGroupblah5" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" id="CorporateModalGroupFlieBirthCertificate" style="display: none; margin-right: 60px;">
+                                            <div class="form-group MyProfileLang">
+                                                <label key="BirthCertificate" class="fs-14 text-custom-black fw-500">Birth Certificate  <span class="required">*</span> <span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span></label>
+                                                <div>
+                                                    <label id="CorporateModalGroupfileLabel6" style="position: absolute; top: 42%; left: 25%; right: 25%; font-weight: 500; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; ">Choose file</label>
+                                                    <input class="form-control form-control-custom pt-1" style="color: transparent;" type="file" name="CorporateModalGroupfiles6" id="CorporateModalGroupfiles6" onchange="document.getElementById('CorporateModalGroupblah6').src=((this.files[0].name.split('.').pop()=='doc' || this.files[0].name.split('.').pop()=='docx')?'data:image/png;base64,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':this.files[0].name.split('.').pop()=='pdf'?'https://cdn-icons-png.flaticon.com/512/80/80942.png':window.URL.createObjectURL(this.files[0]))">
+                                                    <img id="CorporateModalGroupblah6" class="img-fluid rounded img-thumbnail" style="position: absolute; top: 30px; left: 100%; width: 50px; height: 50px;" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer MyProfileLang ">
+                                    <button key="Update" type="button" id="CorporateUpdateButton" class="btn btn-info">Update</button>
+                                    <button key="close" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="deleteEmployeeModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form>
+                                <div class="modal-header MyProfileLang">
+                                    <h4 class="modal-title">Delete Employee</h4>
+                                    <button key="close" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete these Records?</p>
+                                    <p class="text-warning"><small>This action cannot be undone.</small></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                    <input type="submit" class="btn btn-danger" value="Delete">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+</section>
+
+<script type="text/x-handlebars" id="temp_Nationality">
+
+    {{#each this}}
+    <option value="{{countryAbbrev}}">{{countryName}}</option>
+    {{/each}}
+
+</script>
+<script type="text/x-handlebars" id="temp_NationalityAR">
+
+    {{#each this}}
+    <option value="{{countryAbbrev}}">{{countryNameAR}}</option>
+    {{/each}}
+
+</script>
+
+
+@section scripts {
+
+    <script>
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/ar.min.js" integrity="sha512-EOEeyWHiCPkh0uHPbUjyQsrQtLaG1qR+TvKVctJjmRPzYiCTQAuszMsZGM6ms5oBWZyl3KvtaRkKigSzi/vGZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
+    <script src="~/Register/js/MyProfile.js"></script>
+    <script src="~/Register/js/AdditionMethod.js"></script>
+    <script src="~/Register/js/Languages.js"></script>
+
+}

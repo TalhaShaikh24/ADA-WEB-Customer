@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Checkin";
+    @using Microsoft.Extensions.Configuration
+    @inject IConfiguration Configuration
+}
+
+<style>
+    .confirmCheckinsubheader {
+        background-image: url(/assets/images/ConfirmCheckin.jpg);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        min-height: 450px;
+    }
+    @@media only screen and (max-width:767px) {
+        .destFont {
+            font-size: 10px;
+        }
+
+        .destIcon {
+            margin-bottom: 0px;
+            transform: rotate(90deg);
+        }
+    }
+
+    @@media only screen and (min-width:889px) {
+        .destColumn {
+            display: contents;
+        }
+    }
+</style>
+
+
+<div class="confirmCheckinsubheader normal-bg section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 Checkin">
+                <h1 key="CheckinDetails" class="text-custom-white">Check-In</h1>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container-fluid pt-5 pb-5">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="listing-top-heading mb-xl-20">
+                <h6 class="no-margin text-custom-black" id="ResultData"></h6>
+                <div class="sort-by d-none">
+                    <span class="text-custom-black fs-14 fw-600">Sort by</span>
+                    <div class="group-form">
+                        <select class="form-control form-control-custom custom-select">
+                            <option>A to Z</option>
+                            <option>Z to A</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <div class="row pl-2 pr-2  pb-5" id="ConfirmCheckin">
+
+        </div>
+
+    </div>
+
+
+
+
+</div><!-- end container -->
+
+
+@section scripts {
+    <script src="~/Register/jquery/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/ar.min.js" integrity="sha512-EOEeyWHiCPkh0uHPbUjyQsrQtLaG1qR+TvKVctJjmRPzYiCTQAuszMsZGM6ms5oBWZyl3KvtaRkKigSzi/vGZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/Register/js/Languages.js"></script>
+    <script src="~/Register/js/ConfirmCheckin.js"></script>
+}
+
+

@@ -1,0 +1,534 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    @using Microsoft.Extensions.Configuration
+    @inject IConfiguration Configuration
+}
+<style>
+    button.btn.dropdown-toggle.btn-default.btn-light {
+        display: flex;
+        align-items: center;
+    }
+    .cardd {
+        border-radius: 4px;
+        background: #fff;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+        transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+        padding: 18px 30px 18px 30px;
+        cursor: pointer;
+        min-width: 200px;
+        justify-content: center;
+        display: flex;
+    }
+
+        .cardd:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+        }
+
+    .cardd-1 {
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: 80px;
+    }
+	body#ar{
+
+	 contain:size!important
+	}
+
+    @@media(max-width: 990px) {
+        .cardd {
+            margin: 20px;
+        }
+    }
+
+    /*--------------------------------------------------------------
+    # Hero Section
+    --------------------------------------------------------------*/
+    #hero {
+        width: 100%;
+        height: 75vh;
+        background: url('@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/HohpE2RM_4x.jpg') top left;
+        background-size: contain;
+        position: relative;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+        #hero:before {
+            content: "";
+            background: rgba(255, 255, 255, 0.6);
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        #hero .container {
+            position: relative;
+            top:-90px;
+            /*padding-top: 132px;*/
+            padding-bottom: 30px;
+        }
+
+    @@media (max-width: 992px) {
+        #hero .container {
+            padding-top: 58px;
+        }
+    }
+
+    #hero h1 {
+        margin: 0;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 56px;
+        color: #222222;
+        font-family: "Poppins", sans-serif;
+    }
+
+        #hero h1 span {
+
+            color: #d33333;
+        }
+
+    #hero h2 {
+        color: #555555;
+        margin: 5px 0 30px 0;
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    #hero .btn-get-started {
+
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 1px;
+        display: inline-block;
+        padding: 10px 28px;
+        border-radius: 4px;
+        transition: 0.5s;
+        color: #fff;
+        background: #d33333;
+    }
+
+        #hero .btn-get-started:hover {
+            background: #d33333;
+        }
+
+    #hero .btn-watch-video {
+        font-size: 16px;
+        display: inline-block;
+        padding: 10px 25px 8px 40px;
+        transition: 0.5s;
+        margin-left: 25px;
+        color: #222222;
+        position: relative;
+        font-weight: 600;
+    }
+
+        #hero .btn-watch-video i {
+            color: #d33333;
+            font-size: 32px;
+            position: absolute;
+            left: 0;
+            top: 7px;
+            transition: 0.3s;
+        }
+
+        #hero .btn-watch-video:hover {
+            color: #d33333;
+        }
+
+            #hero .btn-watch-video:hover i {
+                color: #d33333;
+            }
+    .tabs {
+        position: relative;
+        top: -200px;
+    }
+    #greySection {
+        height: 10vh
+    }
+    @@media (min-width: 1024px) {
+        #hero {
+            background-attachment: fixed;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        #hero {
+            height: auto;
+        }
+
+            #hero h1 {
+                font-size: 28px;
+                line-height: 36px;
+            }
+
+            #hero h2 {
+                font-size: 18px;
+                line-height: 24px;
+                margin-bottom: 30px;
+            }
+
+            #hero .btn-get-started, #hero .btn-watch-video {
+                font-size: 13px;
+            }
+        .tabs {
+            position: relative;
+            top: -150px;
+        }
+        #hero .container {
+            padding-top: 120px;
+        }
+        #greySection {
+            height: 96vh
+        }
+    }
+</style>
+
+
+<section id="hero" class="d-flex align-items-center" style="padding:20px 0px">
+    <div class="Homelang llang container aos-init aos-animate" data-aos="zoom-out" data-aos-delay="100">
+        <div class="Homelang" style="display: inline-flex; align-items: baseline; ">
+            <h1 key="Welcome" class="Homelang"> Welcome to </h1>
+            <span style="color: #d33333; font-weight: 700; font-size: 40px; line-height: 36px; margin-left: 6px; margin-right: 8px; " key="ADA"> ADA</span>
+        </div>
+
+        <h2 key="Largest">
+            The Largest Helicopter Operator in the Middle East
+        </h2>
+        <div class="d-flex Homelang" id="bannerTabs">
+            <a key="searchflight" class="btn-first btn-small" id="clickme" style="color:#fff">Search Flight</a>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section class="section-padding bg-light-white" id="greySection">
+
+    <div class="banner-tabs">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title mt-2 FlightSearchLang d-none" id="FlightSearchLang">
+                        <h2 key="flight">Flights</h2>
+                        <h3 key="Booking" class="FlightSearchLang"><span key="flight" class="FlightSearchLang">Flights</span> Booking</h3>
+                    </div>
+                    <div class="tabs">
+                        <ul class="custom-flex nav nav-tabs ">
+                            <li class="nav-item FlightSearchLang">
+                                <a key="OneWay" class="nav-link active" data-toggle="tab" href="#OneWay">One Way</a>
+                            </li>
+                            <li class="nav-item FlightSearchLang d-none"><a key="Return" class="nav-link" data-toggle="tab" href="#Return">Return</a></li>
+
+                        </ul>
+                        <div class="tab-content bg-custom-white bx-wrapper padding-20">
+                            <div class="tab-pane active" id="OneWay">
+                                <div class="tab-inner">
+                                    <form id="fromOneWay" role="form">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6">
+                                                <div class="form-group FlightSearchLang">
+                                                    <label key="FlyingFrom" class="fs-14 text-custom-black fw-500">Flying From</label>
+                                                    @*<input disabled type="text" name="#" class="form-control form-control-custom" placeholder="Abu Dhabi" />*@
+                                                    <select name="fromOneWayDropDown"
+                                                            id="fromOneWayDropDown"
+                                                            data-live-search="true"
+                                                            class="selectpicker form-control "
+                                                            data-size="10"
+                                                            data-show-subtext="true"
+                                                            data-max-options="1"
+                                                            title="...">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="group-form FlightSearchLang">
+                                                    <label key="FlyingTo" class="fs-14 text-custom-black fw-500">Flying To</label>
+                                                    <select name="toOneWay"
+                                                            id="toOneWay"
+                                                            data-live-search="true"
+                                                            class="selectpicker form-control "
+                                                            data-size="10"
+                                                            data-show-subtext="true"
+                                                            data-max-options="1"
+                                                            title="...">
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mt-lg-0 mt-3">
+                                                <div class="form-group FlightSearchLang">
+                                                    <label key="FromDate" class="fs-14 text-custom-black fw-500">From Date</label>
+                                                    <div class="input-group group-form">
+                                                        <input autocomplete="off" readonly="readonly" type="text" name="fromOneWayDatevalid" id="fromOneWayDate" class="form-control form-control-custom datepickr" placeholder="dd-mmm-yyyy" />
+                                                        <span class="input-group-append">
+                                                            <i class="far fa-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mt-lg-0 mt-3">
+                                                <div class="form-group FlightSearchLang">
+                                                    <label key="ToDate" class="fs-14 text-custom-black fw-500">To Date</label>
+                                                    <div class="input-group group-form">
+                                                        <input autocomplete="off"  readonly="readonly" type="text" name="toOneWayDatevalid" id="toOneWayDate" class="form-control form-control-custom datepickr" placeholder="dd-mmm-yyyy" />
+                                                        <span class="input-group-append">
+                                                            <i class="far fa-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 FlightSearchLang">
+                                                <label class="submit"></label>
+                                                <button key="SearchNow" type="button" id="searchFlight" class="btn-first btn-submit full-width btn-height">Search Now</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="Return">
+                                <div class="tab-inner">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-6">
+                                                <div class="form-group FlightSearchLang">
+                                                    <label key="LeavingFrom" class="fs-14 text-custom-black fw-500">Leaving From</label>
+                                                    <input type="text" name="#" class="form-control form-control-custom" placeholder="city, distirct or specific airpot" />
+                                                </div>
+                                                <div class="form-group FlightSearchLang">
+                                                    <label key="GoingFrom" class="fs-14 text-custom-black fw-500">Going From</label>
+                                                    <input type="text" name="#" class="form-control form-control-custom" placeholder="city, distirct or specific airpot" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group FlightSearchLang">
+                                                            <label key="DepartingOn" class="fs-14 text-custom-black fw-500">Departing On</label>
+                                                            <div class="input-group group-form">
+                                                                <input type="text" name="#" class="form-control form-control-custom datepickr" placeholder="mm/dd/yy" readonly />
+                                                                <span class="input-group-append">
+                                                                    <i class="far fa-calendar"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="submit"></label>
+                                                            <div class="group-form">
+                                                                <select class="custom-select form-control form-control-custom">
+                                                                    <option>Anytime</option>
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group FlightSearchLang">
+                                                            <label key="ArrivingOn" class="fs-14 text-custom-black fw-500">Arriving On</label>
+                                                            <div class="input-group group-form">
+                                                                <input type="text" name="#" class="form-control form-control-custom datepickr" placeholder="mm/dd/yy" readonly />
+                                                                <span class="input-group-append">
+                                                                    <i class="far fa-calendar"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="submit"></label>
+                                                            <div class="group-form">
+                                                                <select class="custom-select form-control form-control-custom">
+                                                                    <option>Anytime</option>
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <div class="form-group FlightSearchLang">
+                                                            <label key="Adults" class="fs-14 text-custom-black fw-500">Adults</label>
+                                                            <div class="group-form">
+                                                                <select class="custom-select form-control form-control-custom">
+                                                                    <option>01</option>
+                                                                    <option>02</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-3">
+                                                        <div class="form-group FlightSearchLang">
+                                                            <label key="Infants" class="fs-14 text-custom-black fw-500">Infants</label>
+                                                            <div class="group-form">
+                                                                <select class="custom-select form-control form-control-custom">
+                                                                    <option>01</option>
+                                                                    <option>02</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 ">
+                                                        <div class="form-group FlightSearchLang">
+                                                            <label class="submit"></label>
+                                                            <button key="SearchNow" class="btn-first btn-submit full-width btn-height">Search</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+<section class="section-padding our-work-sec">
+    <div class="container">
+        <div class=" mt-2 section-title ServiceSearchLang">
+            <h2 key="Services">Services</h2>
+            <h3 key="OurServices"> Our Services</h3>
+        </div>
+        <div class="row">
+
+
+
+            <div class="col-sm-1-5">
+                <div class="cardd card-1">
+
+                    <button id="manageBooking" type="button" class="btn btn-default ServiceSearchLang">
+                        <center><img src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/MANAGE MY BOOKING.svg" style="height: 60px;" alt=""> </center>
+
+
+                        <div key="Managebooking" class="OurServicesText">Manage booking</div>
+                    </button>
+
+                </div>
+            </div>
+            <div class="col-sm-1-5">
+                <div class="cardd card-1">
+
+                    <button id="Checkin" type="button" class="btn btn-default ServiceSearchLang">
+                        <center><img src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/check-in.svg" style="height: 60px;" alt=""> </center>
+
+
+                        <div key="Check-in" class="OurServicesText">Check-in</div>
+                    </button>
+
+
+                </div>
+            </div>
+            <div class="col-sm-1-5">
+                <div class="cardd card-1">
+
+                    <button id="FlightStatus" type="button" class="btn btn-default ServiceSearchLang">
+                        <center><img src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/flight status.svg" style="height: 60px;" alt=""> </center>
+
+
+                        <div key="FlightStatus" class="OurServicesText">Flight Status</div>
+                    </button>
+
+                </div>
+            </div>
+            <div class="col-sm-1-5">
+                <div class="cardd card-1">
+
+                    <button id="Baggage" type="button" class="btn btn-default ServiceSearchLang">
+                        <center><img src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/baggage.svg" style="height: 60px;" alt=""> </center>
+
+
+                        <div key="Baggage" class="OurServicesText">Baggage</div>
+                    </button>
+
+                </div>
+            </div>
+            <div class="col-sm-1-5">
+                <div class="cardd card-1">
+
+                    <button id="Cargo" type="button" class="btn btn-default ServiceSearchLang">
+                        <center><img src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/upgrade.svg" style="height: 60px;" alt=""> </center>
+
+
+                        <div key="Cargo" class="OurServicesText">Cargo</div>
+                    </button>
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</section>
+
+
+<script type="text/x-handlebars" id="temp_Destination">
+    {{#each this}}
+    <option value="{{destID}}">{{destName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_FromDestination">
+    {{#each this}}
+    <option data-id="{{destID}}" value="{{destIATA}}">{{destName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_DestinationAR">
+    {{#each this}}
+    <option value="{{destID}}">{{destNameAR}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_FromDestinationAR">
+    {{#each this}}
+    <option value="{{destIATA}}">{{destNameAR}}</option>
+    {{/each}}
+
+</script>
+
+@section scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous"></script>
+
+    @*<script src="~/Register/jquery/jquery.min.js"></script>*@
+    <script src="@Url.Content("~/Register/js/Home.js")"></script>
+    <script src="~/Register/js/AdditionMethod.js"></script>
+    <script src="~/Register/js/Languages.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/ar.min.js" integrity="sha512-EOEeyWHiCPkh0uHPbUjyQsrQtLaG1qR+TvKVctJjmRPzYiCTQAuszMsZGM6ms5oBWZyl3KvtaRkKigSzi/vGZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}
+
+
+

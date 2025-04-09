@@ -1,0 +1,210 @@
+﻿@{Layout = null;}
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="keywords" content="#">
+    <meta name="description" content="#">
+    <title>Login - ADA</title>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/favicon.ico">
+    <link rel="shortcut icon" href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/favicon.ico">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/font/flaticon.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/slick.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/ion.rangeSlider.min.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/datepicker.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/magnific-popup.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/nice-select.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/style.css" rel="stylesheet">
+    <link href="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/css/responsive.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.3/sweetalert2.min.css" integrity="sha512-jtQXcnq6H9BVx+dOsdudNCZmNe2hBMqcPpnVgeZcV9L3615F4+QMQebbWW9TV2otOSk/kQgum0MpWefB3uL3pg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+
+        .validation-error-message {
+            color: red;
+            font-size: 13px;
+        }
+        @@media only screen and (max-width:768px) {
+            .hideonMobile {
+                display:none!important
+            }
+        }
+        
+
+    </style>
+    
+    <script>
+
+
+
+
+    </script>
+</head>
+<hearder class="header">
+
+</hearder>
+
+<body class="coming-soon parallax">
+    <style>
+        a, button {
+            cursor: pointer !important
+        }
+        .coming-soon{
+            min-height:100vh;
+        }
+        .loginContainer {
+            margin: 30px 0px;
+        }
+        .loginColumn {
+            background-image: url(@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/ADA-Login.jpg);
+            background-size: cover;
+            background-position: unset;
+        }
+        }
+    </style>
+
+
+    <div class="container loginContainer">
+        <div class="row no-gutters">
+            <div class="col-lg-6 loginColumn hideonMobile">
+                <div class="full-height coming-soon-img d-none"> <img src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/images/ADA-Login.jpg" class="image-fit" alt="img"> </div>
+            </div>
+            <div class="col-lg-6 loginColumn ">
+                <div class="full-height Login-Text" style="padding-top:60px">
+                    <div class="row">
+                        <div class="col-12" style="display:flex;justify-content:end">
+                            <a  onclick="window.history.back()" title="Back to Home"> <i class="fas fa-arrow-left" style="font-size: 30px;color :#372e2c" ></i></a>
+
+                        </div>
+                            <div class="col-12 LoginLang">
+                                <h1 key="Login" class="text-custom-black">Login</h1>
+
+                            </div>
+                            @*<div class="col-4">
+                <div class="group-form">
+                    <label class="fs-14 text-custom-black fw-500">Language</label>
+                    <select id="language" data-live-search="true" class=" form-control-custom">
+                        <option selected disabled value="-1">Select</option>
+                        <option value="Ar">Ar</option>
+                        <option value="En">En</option>
+                    </select>
+                </div>
+            </div>*@
+                        </div>
+
+
+
+                        <form id="FormLogin" class="LoginLang" action="">
+                            <div class="row mb-md-80 d-flex align-items-center">
+
+                                <div class="col-md-12">
+                                    <div class="form-group LoginLang">
+                                        <label for="Username" key="Username" class="fs-14 text-custom-black fw-500">Username</label>
+                                        <input Inputkey="Username" class="form-control form-control-custom" type="text" name="UsernameLogin" id="UsernameLogin"  placeholder="Username" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group LoginLang">
+                                        <label for="Password" key="Password" class="fs-14 text-custom-black fw-500">Password</label>
+                                        <input Inputkey="Password" class="form-control form-control-custom" type="password" name="PasswordLogin" id="PasswordLogin" placeholder="Password" required>
+                                    </div>
+                                </div>
+                                <div class="row" style="width: 100%; align-items: baseline; ">
+                                    <div class="col-6" style="display: flex; justify-content: center; flex-direction: row;">
+                                        <div class="form-group">
+                                            <label for="remember" class="custom-checkbox LoginLang">
+                                                <input id="remember" type="checkbox" name="#">
+                                                <span class="checkmark"></span>
+                                                <p key="Rememberme">Remember me</p>
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group text-right mb-0 LoginLang">
+                                            <button key="Login" type="button" id="loginUser" class="btn-first btn-small ">Login</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </form>
+                        <div class="row mb-md-80 d-flex align-items-center LoginLang">
+
+                            <cite key="Signupas" class="col-12 text-center text-custom-black " style=" font-style: normal; font-size: 15px;">
+                                Signup as
+                                @*<a href="javascript:void(0)" tabindex="0">as</a>*@
+
+                            </cite>
+
+
+                            <div class="col-md-4 mt-2 p-0 d-flex justify-content-center">
+                                <div class="form-group text-right mb-0 LoginLang">
+                                    <a key="Individual" href="@Url.Action("Register","Register")" class="btn-second btn-small">Individual</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-2 p-0 d-flex justify-content-center">
+                                <div class="form-group text-right mb-0 LoginLang">
+                                    <a key="Family" href="@Url.Action("RegisterGroup","Register")" class="btn-second btn-small">Family</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-2 p-0 d-flex justify-content-center">
+                                <div class="form-group text-right mb-0 LoginLang">
+                                    <a key="Corporator" href="@Url.Action("RegisterCorporate","Register")" class="btn-second btn-small">Corporate</a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 mt-2 p-0 d-flex justify-content-center">
+                                <div class="form-group text-right mb-0 LoginLang">
+                                    <a key="ForgotPassword" href="@Url.Action("ForgotPassword","Register")" >Forgot Password?</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="preloader"></div>
+
+    <input type="hidden" id="baseApiUrl" value="@Configuration.GetSection("UrlSetting").GetSection("baseApiUrl").Value" />
+    <input type="hidden" id="LiveWebUrl" value="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value" />
+    <input type="hidden" id="baseUrlForMVCAction" value="@Configuration.GetSection("UrlSetting").GetSection("baseUrlForMVCAction").Value" />
+    @*<script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/jquery.min.js"></script>*@
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.3/sweetalert2.js" integrity="sha512-BHfnusV9xlxeMnFT9r8zBn2FaLFM4wAfTo789iuJamQ7ZbVhe0LhyfBxpFuZKHZX1tVE/Du3gk1sOrjrX36Ipg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/bootstrap.min.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/ion.rangeSlider.min.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/slick.min.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/datepicker.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/datepicker.en.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/isotope.pkgd.min.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/jquery.nice-select.js"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnd9JwZvXty-1gHZihMoFhJtCXmHfeRQg"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/custom.js"></script>
+    <script src="~/js/Authenticate.js"></script>
+    <script src="~/Register/js/Languages.js"></script>
+</body>
+
+</html>

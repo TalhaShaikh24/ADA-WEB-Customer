@@ -1,0 +1,337 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration;
+@{ViewBag.Title = "Corporate Registration";}
+
+<style>
+    a, button {
+        cursor: pointer !important
+    }
+    .validation-error-message {
+        height:0px;
+        color: red;
+        font-size: 12px;
+        display: block;
+        width: 100%;
+    }
+
+    body#ar {
+        direction: rtl;
+        text-align: right
+    }
+
+    body#en {
+        direction: ltr;
+        text-align: left
+    }
+
+    .DocFile {
+        padding-bottom: 30px;
+    }
+
+    .extensionDoc {
+        color: grey;
+        font-size: 11px;
+    }
+
+    .required {
+        color: red
+    }
+
+    .dropdown-toggle::after {
+        margin-left: -4px !important;
+        margin-right: -4px !important;
+    }
+</style>
+
+<div class="subheader normal-bg section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 RegisterLang">
+                <h1 key="CorporateRegistration" class="text-custom-white">Corporate Registration</h1>
+                <p key="WelcometoAbuDhabiAviation" class="text-custom-white" style="font-size:22px"> Welcom to Abu Dhabi Aviation</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid pl-3 pr-3" style="margin-top: 40px" ;>
+
+    <form id="RegistrationGroupForms" role="form" action="">
+
+
+        <div class="card card-primary mt-3 " style="margin-bottom:25px;">
+            <div class="card-header RegisterLang" style="background: #372e2c !important">
+                <h3 class="card-title RegisterLang" style="font-size: 25px; color: #ffff; margin-top: 12px">
+                    <b key="CorporateLoginInformation">Corporate Login Information</b>
+                </h3>
+            </div>
+
+
+
+            <div class="card-body">
+
+                <div class="row mb-3">
+
+                    <div class="col-md-3 form-group RegisterLang">
+                        <label key="Name" class="requiredStar fs-14 text-custom-black fw-900">Username <span class="required">*</span> </label>
+                        <input maxlength="50" autocomplete="off" class="form-control form-control-custom" type="text" name="PUsername" id="PUsername">
+                    </div>
+
+                    <div class="col-md-3 form-group RegisterLang">
+                        <label key="Password" class="requiredStar fs-14 text-custom-black fw-900">Password <span class="required">*</span> </label>
+                        <input maxlength="20" autocomplete="off" class="form-control form-control-custom" type="password" name="PPassword" id="PPassword">
+                    </div>
+
+
+                    <div class="col-md-8 d-flex" style=" justify-content: flex-start; align-items: baseline; padding-top: 30px; padding-left: 20px;">
+                        <div class="form-check mr-5 RegisterLang">
+                            <div class="form-group">
+                                <label class="custom-checkbox RegisterLang" for="ActiveDelmaIsland">
+                                    <input  class="form-check-input ActiveDelmaIsland" type="checkbox" value="" id="ActiveDelmaIsland" name="ActiveDelmaIsland">
+                                    <span class="checkmark"></span>
+                                    <p key="AreYouDelmaResident" class="RegisterLang mb-0">Are You Delma Resident?</p>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-check mr-5 RegisterLang d-none">
+                            <div class="form-group">
+                                <label class="custom-checkbox RegisterLang" for="ActiveUAEID">
+                                    <input class="form-check-input ActiveUAEID" type="checkbox" value="" id="ActiveUAEID" name="ActiveUAEID">
+                                    <span class="checkmark"></span>
+                                    <p key="AreYouUAEResident" class="RegisterLang mb-0">Are You UAE Resident?</p>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-check RegisterLang">
+
+                            <label class="custom-checkbox RegisterLang" for="GovEntity">
+                                <input class="form-check-input GovEntity" type="checkbox" value="" id="GovEntity" name="GovEntity">
+                                <span class="checkmark"></span>
+                                <p key="AreYouGovermentResident" class="RegisterLang mb-0">Are You Goverment Entity?</p>
+                            </label>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+
+        <div class="card card-primary mb-5 ">
+            <div class="card-header" style="background: #372e2c !important">
+                <h3 class=" RegisterLang card-title text-custom-white" style="font-size:25px;color:#ffff; margin-top:12px">
+                    <b key="OtherMembersinformation">Other Members Information</b>
+                </h3>
+            </div>
+            <div class="card-body">
+
+
+                <div id="dynamic-field-1" class="form-group dynamic-field">
+                    <div class="row">
+                        <div class="col-md-3 RegisterLang">
+                            <div class="form-group RegisterLang">
+                                <label class="requiredStar fs-14 text-custom-black fw-500" key="Title">Title</label><span class="required"> *</span>
+                                <select Titlekey="SelectTitle" id="OtherMembersGender" class="form-control selectpicker OtherMembersGender" name="OtherMembersGender">
+
+                                    <option value="Mr" name="Mr">Mr</option>
+                                    <option value="Mrs" name="Mrs">Mrs</option>
+                                    <option value="MS" name="Ms">Ms</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 form-group RegisterLang">
+                            <label key="Name" class="requiredStar fs-14 text-custom-black fw-500">Name <span class="required">*</span> </label>
+                            <input maxlength="50" autocomplete="off" InputKey="Name" class="form-control form-control-custom OtherMembersName" type="text" name="OtherMembersName" id="OtherMembersName" placeholder="Name">
+                        </div>
+
+                        <div class="col-md-3 form-group RegisterLang">
+                            <label key="Email" class="requiredStar fs-14 text-custom-black fw-500">Email <span class="text-secondary">(Optional)</span> </label>
+                            <input maxlength="60" autocomplete="off" InputKey="Email" class="form-control form-control-custom OtherMembersEmail uniqueEmail" type="email" name="OtherMembersEmail" id="OtherMembersEmail" placeholder="Email">
+                        </div>
+
+                        <div class="col-md-3 RegisterLang">
+                            <label key="Nationality" class="requiredStar fs-14 text-custom-black fw-500">Nationality</label><span class="required"> *</span>
+                            <select Titlekey="SelectNationality" id="OtherMembersNationality" name="OtherMembersNationality" class="form-control selectpicker OtherMembersNationality" data-live-search="true" data-size="5" data-show-subtext="true" multiple data-max-options="1" title="Select Nationality">
+                            </select>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-3 form-group RegisterLang">
+                            <label key="Birthdate" class="requiredStar fs-14 text-custom-black fw-500">Birthdate <span class="required">*</span> </label>
+                            <div class="input-group group-form">
+                                <input autocomplete="off" type="text" name="OtherMembersNationalityBirthdate"  readonly="readonly" id="OtherMembersNationalityBirthdate" class="form-control form-control-custom OtherMembersNationalityBirthdate " placeholder="dd-mmm-yyyy"  />
+                                <span class="input-group-append">
+                                    <i class="far fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 form-group RegisterLang">
+                            <div class="form-group RegisterLang">
+                                <label key="Mobile" class="requiredStar fs-14 text-custom-black fw-500">Mobile <span class="required">*</span> </label>
+                                <div class="input-group group-form">
+                                    <input autocomplete="off" style="padding-left:64px;padding-right:64px;" Inputkey="Mobile" class="form-control form-control-custom OtherMembersNationalityMobile uniqueMobile" maxlength="9" type="tel" onkeypress="return isNumberKey(event)" name="OtherMembersNationalityMobile" id="OtherMembersNationalityMobile" placeholder="XXXXXXXXX">
+                                    <span class="input-group-mask">(+971) -</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class=" col-md-3 form-group RegisterLang">
+                            <label key="Passport" class="requiredStar fs-14 text-custom-black fw-500">ID <span class="required">*</span> </label>
+                            <input autocomplete="off" Inputkey="Passport" class="form-control form-control-custom OtherMembersNationalityDocuments uniquePassport" maxlength="18" type="text" name="OtherMembersNationalityDocument" id="OtherMembersNationalityDocument" placeholder="ID">
+                        </div>
+
+                        <div class="col-md-3 RegisterLang">
+                            <label key="DocumentType" class="requiredStar fs-14 text-custom-black fw-500">Document Type <span class="required">*</span> </label>
+                            <select Titlekey="SelectDocumentType" id="OtherMembersNationalityDocumentType" class="form-control selectpicker OtherMembersNationalityDocumentType" name="OtherMembersNationalityDocumentType" data-show-subtext="true" multiple data-live-search="true">
+                                <option value="U">UAE ID</option>
+                                <option value="P">Passport</option>
+                                <option value="T">Travel ID</option>
+                                <option value="S">Security ID</option>
+                                <option value="C">Company ID</option>
+                                <option value="B">Birth Certificate</option>
+
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 d-flex" style=" justify-content: flex-start; align-items: center; padding-top: 30px; padding-left: 20px;">
+                            <div class="form-check mr-3 RegisterLang">
+
+                                <label class="custom-checkbox RegisterLang">
+                                    <input class="form-check-input RGActiveDelmaIsland" type="checkbox" value=" " name="RGActiveDelmaIsland">
+                                    <span class="checkmark"></span>
+                                    <p key="AreYouDelmaResident" class="RegisterLang mb-0">Are You Delma Resident?</p>
+                                </label>
+
+                            </div>
+
+                            <div class="form-check mr-3 RegisterLang d-none">
+                                <input class="form-check-input RGActiveUAEID" type="checkbox" value="">
+                                <label key="AreYouUAEResident" class="form-check-label">
+                                    Are You UAE Resident?
+                                </label>
+                            </div>
+
+                            <div class="form-check RegisterLang d-none">
+                                <input class="form-check-input GovEntity" type="checkbox" value="">
+                                <label key="AreYouGovermentResident" class="form-check-label">
+                                    Are You Goverment Entity?
+                                </label>
+                            </div>
+
+                            <div class="form-check RegisterLang">
+                                <label class="custom-checkbox RegisterLang">
+                                    <input class="form-check-input IsHead" type="checkbox" value="1" name="IsHead" checked disabled>
+                                    <span class="checkmark" style="cursor:not-allowed"></span>
+                                    <p key="AreYouGroupHead" class="RegisterLang mb-0">Are You Group Head?</p>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row pt-4">
+                        <div class="col-md-4" id="FlieUAE" style="display:none;">
+                            <div class="form-group RegisterLang">
+                                <label key="UploadUAEID" class="requiredStar fs-14 text-custom-black fw-500">UAE ID</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                <input id="InputfileUAE0" style=" padding-top: 5px!important;" type="file" class="form-control form-control-custom DocFile " name="UDoc" />
+                            </div>
+                        </div>
+                        <div class="col-md-4" id="FliePasport" style="display:none;">
+                            <div class="form-group RegisterLang">
+                                <label key="UploadPassport" class="requiredStar fs-14 text-custom-black fw-500">Passport</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                <input id="InputfilePassport0" style=" padding-top: 5px!important;" type="file" class="form-control form-control-custom DocFile " name="PDoc" />
+                            </div>
+                        </div>
+                        <div class="col-md-4" id="FlieTravelID" style="display:none;">
+                            <div class="form-group RegisterLang">
+                                <label key="UploadTravelID" class="requiredStar fs-14 text-custom-black fw-500">Upload Travel</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                <input id="InputfileTravel0" style=" padding-top: 5px!important;" type="file" class="form-control form-control-custom DocFile " name="TDoc" />
+                            </div>
+                        </div>
+                        <div class="col-md-4" id="FlieSecurityID" style="display:none;">
+                            <div class="form-group RegisterLang">
+                                <label key="UploadSecurityID" class="requiredStar fs-14 text-custom-black fw-500">Security ID</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                <input id="InputfileSecurity0" style=" padding-top: 5px!important;" type="file" class="form-control form-control-custom DocFile " name="SDoc" />
+                            </div>
+                        </div>
+                        <div class="col-md-4" id="FlieCompanyID" style="display:none;">
+                            <div class="form-group RegisterLang">
+                                <label key="UploadCompanyID" class="requiredStar fs-14 text-custom-black fw-500">Company ID</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                <input id="InputfileCompany0" style=" padding-top: 5px!important;" type="file" class="form-control form-control-custom  DocFile " name="CDoc" />
+                            </div>
+                        </div>
+                        <div class="col-md-4" id="FlieBirthCertificate" style="display:none;">
+                            <div class="form-group RegisterLang">
+                                <label key="UploadBirthCertificate" class="requiredStar fs-14 text-custom-black fw-500">Birth Certificate</label><span class="required"> *</span><span class="extensionDoc"> (doc, docx, jpeg, jpg, png, pdf)</span>
+                                <input id="InputfileBirthdate0" style=" padding-top: 5px!important;" type="file" class="form-control form-control-custom  DocFile " name="BCDoc" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer bg-white d-flex RegisterLang" id="btnRow">
+
+                <button key="Register" class="btn btn-first btn-submit GroupMembersRegistration mx-2" id="GroupMembersRegistration" type="button" tabindex="-1" style="padding-top: 3px; padding-bottom: 3px; padding-left: 25px; padding-right: 25px; border-radius: 25px;">Register</button>
+                @*<button key="Register" type="button" class="btn btn-sm btn-info mx-2" id="GroupMembersRegistration">Register</button>*@
+                <button key="Add" type="button" id="add-button" class="btn btn-first btn-small float-left btn-sm shadow-sm mx-2"><i class="fas fa-plus fa-fw"></i> Add</button>
+                <button key="Remove" type="button" id="remove-button" class="btn btn-second btn-small-brown float-left btn-sm ml-1 mx-2"><i class="fas fa-minus fa-fw"></i> Remove</button>
+            </div>
+
+        </div>
+
+
+    </form>
+
+</div>
+<!-- /.container-fluid -->
+
+
+<script type="text/x-handlebars" id="temp_Nationality">
+    {{#each this}}
+    <option value="{{countryAbbrev}}">{{countryName}}</option>
+    {{/each}}
+
+</script>
+<script type="text/x-handlebars" id="temp_NationalityAR">
+    {{#each this}}
+    <option value="{{countryAbbrev}}">{{countryNameAR}}</option>
+    {{/each}}
+
+</script>
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>
+
+@section scripts {
+    <script src="~/Register/js/Languages.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous"></script>
+    <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/Register/js/AdditionMethod.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/ar.min.js" integrity="sha512-EOEeyWHiCPkh0uHPbUjyQsrQtLaG1qR+TvKVctJjmRPzYiCTQAuszMsZGM6ms5oBWZyl3KvtaRkKigSzi/vGZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+
+    @*<script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/Register/js/Languages.js"></script>*@
+    <script src="@Url.Content("~/Register/js/RegisterCorporate.js")"></script>
+
+
+}

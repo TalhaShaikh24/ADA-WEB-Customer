@@ -1,0 +1,98 @@
+﻿@{ViewBag.Title = "Flight Booking";}
+
+<style>
+    span[language="ar"] {
+        text-align: right !important;
+    }
+
+    .btn-group {
+        background: #dadddc !important;
+    }
+    .group-form .form-control-custom, .group-form .form-control-custom:not(:last-child) {
+        border-radius: 10px;
+        padding: 0 15px 0 15px!important;
+    }
+    
+    .dropdown-toggle::after {
+        margin-left: -4px!important;
+        margin-right: -4px!important;
+        color:#f3f3f3
+    }
+    .slideArrow:focus{
+        color:#fff!important
+    }
+</style>
+
+
+<div class="subheader normal-bg section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 FlightBookingLang">
+                <h1 key="Booking" class="text-custom-white">Booking</h1>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="section-padding bg-light-white booking-form pt-5 pb-5">
+    <div class="container">
+        <div class="row tabs">
+
+
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6">
+                        <ul class="custom-flex nav nav-tabs">
+                            <li class="nav-item FlightBooking FlightBookingLang"> <a key="FlightBooking" class="nav-link active" data-toggle="tab" href="#flights-booking">Flight Booking</a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-6 FlightBookingLang " style="display:flex;justify-content: end;">
+                        <a key="prev" class="btn slideArrow mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev"> Prev
+                            @*<i class="fa fa-arrow-left"></i>*@
+                        </a>
+                        <a key="next" class="btn slideArrow mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next"> Next
+                            @*<i class="fa fa-arrow-right"></i>*@
+                        </a>
+                    </div>
+                </div>
+                <div id="carouselExampleIndicators2" class="carousel slide bg-custom-white bx-wrapper padding-20" data-ride="carousel" data-interval="false">
+
+                    <div class="carousel-inner " id="MembersInformationAppend">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-end text-white FlightBookingLang">
+                            <button key="ConfirmReservation" type="button" id="ConfirmBooking" class="btn-first btn-small ">Confirm Reservation</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script type="text/x-handlebars" id="temp_Destination">
+    {{#each this}}
+    <option value="{{destICAO}}" data-id="{{"destID"}}">{{destName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_Nationality">
+    {{#each this}}
+    <option value="{{countryAbbrev}}">{{countryName}}</option>
+    {{/each}}
+
+</script>
+
+
+@section scripts {
+    <script src="@Url.Content("~/Register/js/FlightBooking.js")"></script>
+    <script src="~/Register/js/AdditionMethod.js"></script>
+    <script src="~/Register/js/Languages.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/ar.min.js" integrity="sha512-EOEeyWHiCPkh0uHPbUjyQsrQtLaG1qR+TvKVctJjmRPzYiCTQAuszMsZGM6ms5oBWZyl3KvtaRkKigSzi/vGZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+}

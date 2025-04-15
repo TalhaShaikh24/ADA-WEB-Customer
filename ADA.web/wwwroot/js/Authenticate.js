@@ -197,6 +197,7 @@ function Login() {
                 window.location.href = LiveWebUrl+"/Home/Index";
             }
             if (res.Status == 304) {
+                Cookies.remove('AuthToken', { path: '/' });
 
                 localStorage.removeItem("userData");
 
@@ -216,6 +217,8 @@ function Login() {
             }
             if (res.Status == 401) {
                 $('#preloader').hide();
+                Cookies.remove('AuthToken', { path: '/' });
+
                 localStorage.removeItem("userData");
                 swal.fire({
                     title: IfArabic ? "خطأ" : "Error",

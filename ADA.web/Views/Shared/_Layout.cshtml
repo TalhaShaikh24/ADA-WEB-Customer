@@ -242,7 +242,7 @@
                 $("#BookingHistory").show();
 
                 $('.signout').on('click', function () {
-
+                    Cookies.remove('AuthToken', { path: '/' });
                     localStorage.removeItem('userData');
                     localStorage.removeItem('GroupMemberIds');
                     window.location.href = '@Url.Action("Index", "Home")';

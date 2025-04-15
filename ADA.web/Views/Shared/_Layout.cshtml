@@ -176,6 +176,7 @@
     <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/jquery.min.js"></script>
     <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/popper.min.js"></script>
     <script src="@Configuration.GetSection("UrlSetting").GetSection("LiveWebUrl").Value/assets/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
     <script src="~/assets/js/jquery-barcode.js"></script>
     <script src="https://www.jqueryscript.net/demo/Bootstrap-4-Dropdown-Select-Plugin-jQuery/dist/js/bootstrap-select.js"></script>
 
@@ -206,6 +207,12 @@
     <script>
         $(document).ready(function () {
 
+                    $.ajaxSetup({
+                        xhrFields: {
+                            withCredentials: true  // Automatically include cookies in every request
+                        },
+                        crossDomain: true  // Make sure cross-domain is allowed
+                    });
 
 
 
@@ -245,6 +252,8 @@
 
         })
     </script>
+
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

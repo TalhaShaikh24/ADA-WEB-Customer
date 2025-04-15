@@ -181,6 +181,10 @@ function Login() {
         debugger
             if (res.status == 200) {
                 debugger
+
+                // Save token in cookie
+                Cookies.set('AuthToken', res.token, { expires: 2, path: '/' }); // Expires in 2 day
+
                 localStorage.setItem("userData", JSON.stringify(res.data.dataObj));
                 $('#preloader').hide();
                 swal.fire({
